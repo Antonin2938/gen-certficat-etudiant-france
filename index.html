@@ -140,8 +140,11 @@
                 <button id="modeFR" class="mode-btn active" onclick="switchMode('FR')">
                     🇫🇷 Certificat FR
                 </button>
+                <button id="modeUS" class="mode-btn" onclick="switchMode('US')">
+                    🇺🇸 US Certificate
+                </button>
                 <button id="modeK12" class="mode-btn" onclick="switchMode('K12')">
-                    🇺🇸 Pay Stub K12
+                    💵 Pay Stub K12
                 </button>
             </div>
         </header>
@@ -431,315 +434,558 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Download Button -->
-                <button id="downloadBtn"
-                    class="w-full mt-6 px-6 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-xl shadow-lg hover:from-emerald-700 hover:to-teal-700 hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] transition-all duration-300">
-                    <i class="fas fa-download mr-2"></i>Télécharger en Image
-                </button>
-            </div>
-
-            <!-- Right Column - Preview -->
-            <div class="w-full lg:w-3/5 flex flex-col items-center">
-                <h2 class="text-2xl font-bold text-gray-300 mb-4"><i class="fas fa-eye mr-2"></i>Aperçu du Certificat
-                </h2>
-
-                <div id="certificateContainer" class="bg-gray-100 p-4 rounded-2xl shadow-2xl">
-                    <!-- Certificate Preview - New Model -->
-                    <div id="certificate" class="certificate-page bg-[#f5f5dc] p-[40px] shadow-xl text-gray-900"
-                        style="font-family: 'Times New Roman', serif; line-height: 2.2;">
-
-                        <!-- Header -->
-                        <div class="text-center mb-8">
-                            <h3 class="text-base font-normal m-0" id="certNomEtab">ACADÉMIE DE PARIS</h3>
-                            <h3 class="text-base font-normal m-0" id="certAdresse">12 Boulevard d'Indochine, 75019 Paris
-                            </h3>
-                            <hr class="w-12 mx-auto my-3 border-black">
-                            <h1 class="text-2xl font-bold underline my-5">CERTIFICAT DE SCOLARITE</h1>
-                            <h2 class="text-lg font-normal my-4">ANNEE SCOLAIRE <span id="certAnnee">2025 - 2026</span>
-                            </h2>
-                        </div>
-
-                        <!-- Content -->
-                        <div class="content">
-                            <p class="m-0">Je soussigné <span id="certSoussigne">Directeur</span> <span
-                                    id="certDirecteurIntro" class="font-medium">"Nom directeur"</span></p>
-                            <p class="m-0">Certifie que <span id="certIlElle">le</span> nommé(e) <span
-                                    id="certNomPrenom" class="font-medium">"NOM Prénom"</span></p>
-                            <p class="m-0">Agé(e) de <span id="certAge" class="font-medium">"18"</span> ans</p>
-                            <p class="m-0">suit assidûment les cours de <span id="certMatiere"
-                                    class="font-medium">"Terminale Générale"</span></p>
-                            <p class="m-0">dans mon établissement où il/elle est inscrit(e) depuis</p>
-                            <p class="m-0">le <span id="certDateInscription" class="font-medium">01/09/2025</span>
-                                expire le <span id="certDateExpiration" class="font-medium">30/06/2026</span></p>
-                        </div>
-
-                        <!-- Certification Box -->
-                        <div class="my-5 pl-4 border-l-2 border-black" style="line-height: 2;">
-                            <p class="m-0">Je certifie</p>
-                            <p class="m-0">qu'<span id="certIlElle2">il</span> ne bénéficie pas (1)</p>
-                            <p class="m-0">qu'<span id="certIlElle3">il</span> bénéficie (1) d'une bourse d'entretien
-                            </p>
-                        </div>
-
-                        <!-- Footer -->
-                        <div class="flex justify-between mt-20">
-                            <!-- Left Footer -->
-                            <div class="w-[48%]">
-                                <div class="mb-6">
-                                    <p class="m-0"><small>(Nom-Prénoms-Titre<br>et qualité du Signataire)</small></p>
+                    <!-- US Certificate Form (hidden by default) -->
+                    <div id="formUS" class="space-y-4" style="display: none;">
+                        <!-- University Section -->
+                        <div class="border-b border-gray-700 pb-4 mb-4">
+                            <h3 class="text-lg font-semibold text-blue-400 mb-4"><i
+                                    class="fas fa-university mr-2"></i>University</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">University Name</label>
+                                    <input type="text" id="usUniversityName"
+                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
+                                        placeholder="Harvard University">
                                 </div>
-
-                                <div class="mt-6">
-                                    <p class="m-0 font-bold">Mode de paiement</p>
-                                    <p class="m-0 font-bold">Virement - Chèque - Espèces</p>
-                                </div>
-
-                                <div class="mt-8">
-                                    <p class="m-0"><small>N° d'Immatriculation à la CAF ou<br>Sécurité Sociale du
-                                            responsable légal</small></p>
-                                    <p class="mt-5"><span id="certNumImmat" class="text-red-600 font-medium">"numéro
-                                            aléatoire"</span></p>
-                                </div>
-                            </div>
-
-                            <!-- Right Footer -->
-                            <div class="w-[48%] text-center">
-                                <p class="m-0">Fait à <span id="certVille" class="font-medium">Paris</span></p>
-                                <p class="m-0">Le <span id="certDateSignature" class="font-medium">09/12/2025</span></p>
-                                <p class="mt-8 font-bold">Signature et cachet</p>
-                                <div class="border border-black p-4 mt-5 min-h-[80px] flex items-center justify-center">
-                                    <span id="certSignature" class="text-2xl text-blue-900"
-                                        style="font-family: 'Dancing Script', cursive;">Signature</span>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Address</label>
+                                    <input type="text" id="usUniversityAddress"
+                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
+                                        placeholder="Cambridge, MA 02138">
                                 </div>
                             </div>
                         </div>
 
-                        <p class="text-sm text-center mt-16">(1) Rayer la mention inutile</p>
+                        <!-- Student Section -->
+                        <div class="border-b border-gray-700 pb-4 mb-4">
+                            <h3 class="text-lg font-semibold text-purple-400 mb-4"><i
+                                    class="fas fa-user-graduate mr-2"></i>Student</h3>
+                            <div class="space-y-3">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-300 mb-1">First Name</label>
+                                        <input type="text" id="usFirstName"
+                                            class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
+                                            placeholder="John">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-300 mb-1">Last Name</label>
+                                        <input type="text" id="usLastName"
+                                            class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
+                                            placeholder="Smith">
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-300 mb-1">Date of
+                                            Birth</label>
+                                        <input type="date" id="usDOB"
+                                            class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-300 mb-1">Student ID</label>
+                                        <input type="text" id="usStudentId"
+                                            class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
+                                            placeholder="123456789">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Enrollment Section -->
+                        <div class="border-b border-gray-700 pb-4 mb-4">
+                            <h3 class="text-lg font-semibold text-cyan-400 mb-4"><i
+                                    class="fas fa-book mr-2"></i>Enrollment</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Major / Program</label>
+                                    <select id="usMajor"
+                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg">
+                                        <option>Computer Science</option>
+                                        <option>Business Administration</option>
+                                        <option>Psychology</option>
+                                        <option>Biology</option>
+                                        <option>Engineering</option>
+                                        <option>Economics</option>
+                                        <option>Political Science</option>
+                                        <option>Mathematics</option>
+                                    </select>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label
+                                            class="block text-sm font-medium text-gray-300 mb-1">Classification</label>
+                                        <select id="usClassification"
+                                            class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg">
+                                            <option>Freshman</option>
+                                            <option>Sophomore</option>
+                                            <option>Junior</option>
+                                            <option>Senior</option>
+                                            <option>Graduate Student</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-300 mb-1">Status</label>
+                                        <select id="usStatus"
+                                            class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg">
+                                            <option>Full-time</option>
+                                            <option>Part-time</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Academic Year</label>
+                                    <input type="text" id="usAcademicYear"
+                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
+                                        value="2025-2026">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Registrar Section -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-emerald-400 mb-4"><i
+                                    class="fas fa-signature mr-2"></i>Registrar</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Registrar Name</label>
+                                    <input type="text" id="usRegistrarName"
+                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
+                                        placeholder="Dr. Sarah Johnson">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Issue Date</label>
+                                    <input type="date" id="usIssueDate"
+                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg">
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Download Button -->
+                    <button id="downloadBtn"
+                        class="w-full mt-6 px-6 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-xl shadow-lg hover:from-emerald-700 hover:to-teal-700 hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] transition-all duration-300">
+                        <i class="fas fa-download mr-2"></i>Télécharger en Image
+                    </button>
                 </div>
 
-                <!-- K12 Pay Stub Preview (hidden by default) -->
-                <div id="paystubContainer" class="bg-gray-100 p-4 rounded-2xl shadow-2xl" style="display: none;">
-                    <div id="paystub" class="paystub-page"
-                        style="font-family: Arial, sans-serif; background-color: white; color: black; width: 850px; padding: 40px; box-sizing: border-box; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+                <!-- Right Column - Preview -->
+                <div class="w-full lg:w-3/5 flex flex-col items-center">
+                    <h2 class="text-2xl font-bold text-gray-300 mb-4"><i class="fas fa-eye mr-2"></i>Aperçu du
+                        Certificat
+                    </h2>
 
-                        <!-- NYC DOE Header -->
-                        <div
-                            style="text-align: center; margin-bottom: 20px; border-bottom: 3px solid #003366; padding-bottom: 15px;">
-                            <div style="font-size: 14px; color: #003366; font-weight: bold; margin-bottom: 5px;">NEW
-                                YORK CITY DEPARTMENT OF EDUCATION</div>
-                            <div id="k12Logo" style="font-size: 28px; font-weight: bold; color: #000; margin: 10px 0;">
-                                Q300 - THE SCHOOL FOR MATH, SCIENCE & TECHNOLOGY
+                    <div id="certificateContainer" class="bg-gray-100 p-4 rounded-2xl shadow-2xl">
+                        <!-- Certificate Preview - New Model -->
+                        <div id="certificate" class="certificate-page bg-[#f5f5dc] p-[40px] shadow-xl text-gray-900"
+                            style="font-family: 'Times New Roman', serif; line-height: 2.2;">
+
+                            <!-- Header -->
+                            <div class="text-center mb-8">
+                                <h3 class="text-base font-normal m-0" id="certNomEtab">ACADÉMIE DE PARIS</h3>
+                                <h3 class="text-base font-normal m-0" id="certAdresse">12 Boulevard d'Indochine, 75019
+                                    Paris
+                                </h3>
+                                <hr class="w-12 mx-auto my-3 border-black">
+                                <h1 class="text-2xl font-bold underline my-5">CERTIFICAT DE SCOLARITE</h1>
+                                <h2 class="text-lg font-normal my-4">ANNEE SCOLAIRE <span id="certAnnee">2025 -
+                                        2026</span>
+                                </h2>
                             </div>
-                            <div id="k12CompanyAddress" style="font-size: 12px; color: #555;">28-37 29th Street, Long
-                                Island City, NY 11102 • District 30</div>
+
+                            <!-- Content -->
+                            <div class="content">
+                                <p class="m-0">Je soussigné <span id="certSoussigne">Directeur</span> <span
+                                        id="certDirecteurIntro" class="font-medium">"Nom directeur"</span></p>
+                                <p class="m-0">Certifie que <span id="certIlElle">le</span> nommé(e) <span
+                                        id="certNomPrenom" class="font-medium">"NOM Prénom"</span></p>
+                                <p class="m-0">Agé(e) de <span id="certAge" class="font-medium">"18"</span> ans</p>
+                                <p class="m-0">suit assidûment les cours de <span id="certMatiere"
+                                        class="font-medium">"Terminale Générale"</span></p>
+                                <p class="m-0">dans mon établissement où il/elle est inscrit(e) depuis</p>
+                                <p class="m-0">le <span id="certDateInscription" class="font-medium">01/09/2025</span>
+                                    expire le <span id="certDateExpiration" class="font-medium">30/06/2026</span></p>
+                            </div>
+
+                            <!-- Certification Box -->
+                            <div class="my-5 pl-4 border-l-2 border-black" style="line-height: 2;">
+                                <p class="m-0">Je certifie</p>
+                                <p class="m-0">qu'<span id="certIlElle2">il</span> ne bénéficie pas (1)</p>
+                                <p class="m-0">qu'<span id="certIlElle3">il</span> bénéficie (1) d'une bourse
+                                    d'entretien
+                                </p>
+                            </div>
+
+                            <!-- Footer -->
+                            <div class="flex justify-between mt-20">
+                                <!-- Left Footer -->
+                                <div class="w-[48%]">
+                                    <div class="mb-6">
+                                        <p class="m-0"><small>(Nom-Prénoms-Titre<br>et qualité du Signataire)</small>
+                                        </p>
+                                    </div>
+
+                                    <div class="mt-6">
+                                        <p class="m-0 font-bold">Mode de paiement</p>
+                                        <p class="m-0 font-bold">Virement - Chèque - Espèces</p>
+                                    </div>
+
+                                    <div class="mt-8">
+                                        <p class="m-0"><small>N° d'Immatriculation à la CAF ou<br>Sécurité Sociale du
+                                                responsable légal</small></p>
+                                        <p class="mt-5"><span id="certNumImmat" class="text-red-600 font-medium">"numéro
+                                                aléatoire"</span></p>
+                                    </div>
+                                </div>
+
+                                <!-- Right Footer -->
+                                <div class="w-[48%] text-center">
+                                    <p class="m-0">Fait à <span id="certVille" class="font-medium">Paris</span></p>
+                                    <p class="m-0">Le <span id="certDateSignature" class="font-medium">09/12/2025</span>
+                                    </p>
+                                    <p class="mt-8 font-bold">Signature et cachet</p>
+                                    <div
+                                        class="border border-black p-4 mt-5 min-h-[80px] flex items-center justify-center">
+                                        <span id="certSignature" class="text-2xl text-blue-900"
+                                            style="font-family: 'Dancing Script', cursive;">Signature</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="text-sm text-center mt-16">(1) Rayer la mention inutile</p>
                         </div>
+                    </div>
 
-                        <!-- Document Title -->
-                        <div
-                            style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
-                            <div style="width: 50%;">
-                                <div style="font-size: 11px; color: #666;">School Name:</div>
-                                <div id="k12CompanyName" style="font-size: 14px; font-weight: bold;">Q300 Lower Division
-                                    (Queens, NY)</div>
-                            </div>
+                    <!-- K12 Pay Stub Preview (hidden by default) -->
+                    <div id="paystubContainer" class="bg-gray-100 p-4 rounded-2xl shadow-2xl" style="display: none;">
+                        <div id="paystub" class="paystub-page"
+                            style="font-family: Arial, sans-serif; background-color: white; color: black; width: 850px; padding: 40px; box-sizing: border-box; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+
+                            <!-- NYC DOE Header -->
                             <div
-                                style="border: 2px solid #003366; color: #003366; padding: 10px 20px; font-weight: bold; font-size: 20px; text-align: center; text-transform: uppercase;">
-                                EARNINGS<br>STATEMENT
+                                style="text-align: center; margin-bottom: 20px; border-bottom: 3px solid #003366; padding-bottom: 15px;">
+                                <div style="font-size: 14px; color: #003366; font-weight: bold; margin-bottom: 5px;">NEW
+                                    YORK CITY DEPARTMENT OF EDUCATION</div>
+                                <div id="k12Logo"
+                                    style="font-size: 28px; font-weight: bold; color: #000; margin: 10px 0;">
+                                    Q300 - THE SCHOOL FOR MATH, SCIENCE & TECHNOLOGY
+                                </div>
+                                <div id="k12CompanyAddress" style="font-size: 12px; color: #555;">28-37 29th Street,
+                                    Long
+                                    Island City, NY 11102 • District 30</div>
                             </div>
-                        </div>
 
-                        <!-- Info Section -->
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-                            <div style="border: 1px solid #999; width: 48%;">
+                            <!-- Document Title -->
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                                <div style="width: 50%;">
+                                    <div style="font-size: 11px; color: #666;">School Name:</div>
+                                    <div id="k12CompanyName" style="font-size: 14px; font-weight: bold;">Q300 Lower
+                                        Division
+                                        (Queens, NY)</div>
+                                </div>
                                 <div
-                                    style="background-color: #f9f9f9; font-weight: bold; padding: 5px 10px; border-bottom: 1px solid #999;">
-                                    EMPLOYEE INFORMATION</div>
-                                <div style="padding: 10px; line-height: 1.6; font-size: 14px;">
-                                    <strong>Name:</strong> <span id="k12DisplayName">Sopalai San</span><br>
-                                    <strong>Employee ID:</strong> <span id="k12DisplayId">003618</span><br>
-                                    <strong>Department:</strong> <span id="k12DisplayDept">Mathematics
-                                        Department</span><br>
-                                    <strong>Position:</strong> <span id="k12DisplayPosition">Teacher</span><br>
-                                    <strong>Status:</strong> Full-time Active Faculty
+                                    style="border: 2px solid #003366; color: #003366; padding: 10px 20px; font-weight: bold; font-size: 20px; text-align: center; text-transform: uppercase;">
+                                    EARNINGS<br>STATEMENT
                                 </div>
                             </div>
-                            <div style="border: 1px solid #999; width: 48%;">
-                                <div
-                                    style="background-color: #f9f9f9; font-weight: bold; padding: 5px 10px; border-bottom: 1px solid #999;">
-                                    PAY SUMMARY</div>
-                                <div style="padding: 10px; line-height: 1.6; font-size: 14px;">
-                                    <strong>Pay Period:</strong> <span id="k12PayPeriod">2025-09-01 —
-                                        2025-11-30</span><br>
-                                    <strong>Pay Date:</strong> <span id="k12PayDate">2025-11-30</span>
+
+                            <!-- Info Section -->
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                                <div style="border: 1px solid #999; width: 48%;">
+                                    <div
+                                        style="background-color: #f9f9f9; font-weight: bold; padding: 5px 10px; border-bottom: 1px solid #999;">
+                                        EMPLOYEE INFORMATION</div>
+                                    <div style="padding: 10px; line-height: 1.6; font-size: 14px;">
+                                        <strong>Name:</strong> <span id="k12DisplayName">Sopalai San</span><br>
+                                        <strong>Employee ID:</strong> <span id="k12DisplayId">003618</span><br>
+                                        <strong>Department:</strong> <span id="k12DisplayDept">Mathematics
+                                            Department</span><br>
+                                        <strong>Position:</strong> <span id="k12DisplayPosition">Teacher</span><br>
+                                        <strong>Status:</strong> Full-time Active Faculty
+                                    </div>
+                                </div>
+                                <div style="border: 1px solid #999; width: 48%;">
+                                    <div
+                                        style="background-color: #f9f9f9; font-weight: bold; padding: 5px 10px; border-bottom: 1px solid #999;">
+                                        PAY SUMMARY</div>
+                                    <div style="padding: 10px; line-height: 1.6; font-size: 14px;">
+                                        <strong>Pay Period:</strong> <span id="k12PayPeriod">2025-09-01 —
+                                            2025-11-30</span><br>
+                                        <strong>Pay Date:</strong> <span id="k12PayDate">2025-11-30</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Main Table -->
-                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px; font-size: 14px;">
-                            <thead>
-                                <tr>
-                                    <th colspan="4"
-                                        style="border: 1px solid #999; padding: 6px 8px; background-color: #dcdcdc; text-align: left;">
-                                        EARNINGS</th>
-                                    <th colspan="2"
-                                        style="border: 1px solid #999; padding: 6px 8px; background-color: #dcdcdc; text-align: left;">
-                                        DEDUCTIONS</th>
-                                </tr>
-                                <tr>
-                                    <th
-                                        style="border: 1px solid #999; padding: 6px 8px; background-color: #dcdcdc; width: 25%;">
-                                        Description</th>
-                                    <th
-                                        style="border: 1px solid #999; padding: 6px 8px; background-color: #dcdcdc; text-align: center;">
-                                        Hours</th>
-                                    <th
-                                        style="border: 1px solid #999; padding: 6px 8px; background-color: #dcdcdc; text-align: center;">
-                                        Rate</th>
-                                    <th
-                                        style="border: 1px solid #999; padding: 6px 8px; background-color: #dcdcdc; text-align: right;">
-                                        Amount</th>
-                                    <th
-                                        style="border: 1px solid #999; padding: 6px 8px; background-color: #dcdcdc; width: 25%;">
-                                        Description</th>
-                                    <th
-                                        style="border: 1px solid #999; padding: 6px 8px; background-color: #dcdcdc; text-align: right;">
-                                        Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;">Base Salary</td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px; text-align: center;">-</td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px; text-align: center;">-</td>
-                                    <td id="k12DisplaySalary"
-                                        style="border: 1px solid #999; padding: 6px 8px; text-align: right;">$5,000.00
-                                    </td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;">Federal Tax</td>
-                                    <td id="k12FedTax"
-                                        style="border: 1px solid #999; padding: 6px 8px; text-align: right;">$850.00
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;">Overtime</td>
-                                    <td id="k12DisplayOTHours"
-                                        style="border: 1px solid #999; padding: 6px 8px; text-align: center;">10</td>
-                                    <td id="k12DisplayOTRate"
-                                        style="border: 1px solid #999; padding: 6px 8px; text-align: center;">$40/hr
-                                    </td>
-                                    <td id="k12DisplayOTAmount"
-                                        style="border: 1px solid #999; padding: 6px 8px; text-align: right;">$400.00
-                                    </td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;">State Tax</td>
-                                    <td id="k12StateTax"
-                                        style="border: 1px solid #999; padding: 6px 8px; text-align: right;">$240.00
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;">Bonus</td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px; text-align: center;">-</td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px; text-align: center;">-</td>
-                                    <td id="k12DisplayBonus"
-                                        style="border: 1px solid #999; padding: 6px 8px; text-align: right;">$300.00
-                                    </td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;">Social Security</td>
-                                    <td id="k12SS" style="border: 1px solid #999; padding: 6px 8px; text-align: right;">
-                                        $353.40</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;">&nbsp;</td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;"></td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;"></td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;"></td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;">Medicare</td>
-                                    <td id="k12Medicare"
-                                        style="border: 1px solid #999; padding: 6px 8px; text-align: right;">$82.65</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;">&nbsp;</td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;"></td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;"></td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;"></td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;">Health Insurance</td>
-                                    <td id="k12Health"
-                                        style="border: 1px solid #999; padding: 6px 8px; text-align: right;">$150.00
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;">&nbsp;</td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;"></td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;"></td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;"></td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;">Retirement (401k)</td>
-                                    <td id="k12Retirement"
-                                        style="border: 1px solid #999; padding: 6px 8px; text-align: right;">$200.00
-                                    </td>
-                                </tr>
-                                <tr style="font-weight: bold;">
-                                    <td colspan="2" style="border: none;"></td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px; text-align: right;">Total:</td>
-                                    <td id="k12TotalEarnings"
-                                        style="border: 1px solid #999; padding: 6px 8px; text-align: right;">$5,700.00
-                                    </td>
-                                    <td style="border: 1px solid #999; padding: 6px 8px;">Total Deductions:</td>
-                                    <td id="k12TotalDeductions"
-                                        style="border: 1px solid #999; padding: 6px 8px; text-align: right;">$1,876.05
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <!-- Footer Section -->
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                            <div style="width: 40%;">
-                                <div
-                                    style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase; font-size: 14px;">
-                                    YEAR-TO-DATE (YTD)</div>
-                                <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                            <!-- Main Table -->
+                            <table
+                                style="width: 100%; border-collapse: collapse; margin-bottom: 30px; font-size: 14px;">
+                                <thead>
                                     <tr>
-                                        <td style="border: 1px solid #999; padding: 5px;">YTD Gross Pay:</td>
-                                        <td id="k12YTDGross"
-                                            style="border: 1px solid #999; padding: 5px; text-align: right;">$11,400.00
+                                        <th colspan="4"
+                                            style="border: 1px solid #999; padding: 6px 8px; background-color: #dcdcdc; text-align: left;">
+                                            EARNINGS</th>
+                                        <th colspan="2"
+                                            style="border: 1px solid #999; padding: 6px 8px; background-color: #dcdcdc; text-align: left;">
+                                            DEDUCTIONS</th>
+                                    </tr>
+                                    <tr>
+                                        <th
+                                            style="border: 1px solid #999; padding: 6px 8px; background-color: #dcdcdc; width: 25%;">
+                                            Description</th>
+                                        <th
+                                            style="border: 1px solid #999; padding: 6px 8px; background-color: #dcdcdc; text-align: center;">
+                                            Hours</th>
+                                        <th
+                                            style="border: 1px solid #999; padding: 6px 8px; background-color: #dcdcdc; text-align: center;">
+                                            Rate</th>
+                                        <th
+                                            style="border: 1px solid #999; padding: 6px 8px; background-color: #dcdcdc; text-align: right;">
+                                            Amount</th>
+                                        <th
+                                            style="border: 1px solid #999; padding: 6px 8px; background-color: #dcdcdc; width: 25%;">
+                                            Description</th>
+                                        <th
+                                            style="border: 1px solid #999; padding: 6px 8px; background-color: #dcdcdc; text-align: right;">
+                                            Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;">Base Salary</td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px; text-align: center;">-</td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px; text-align: center;">-</td>
+                                        <td id="k12DisplaySalary"
+                                            style="border: 1px solid #999; padding: 6px 8px; text-align: right;">
+                                            $5,000.00
+                                        </td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;">Federal Tax</td>
+                                        <td id="k12FedTax"
+                                            style="border: 1px solid #999; padding: 6px 8px; text-align: right;">$850.00
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="border: 1px solid #999; padding: 5px;">YTD Deductions:</td>
-                                        <td id="k12YTDDeductions"
-                                            style="border: 1px solid #999; padding: 5px; text-align: right;">$3,752.10
+                                        <td style="border: 1px solid #999; padding: 6px 8px;">Overtime</td>
+                                        <td id="k12DisplayOTHours"
+                                            style="border: 1px solid #999; padding: 6px 8px; text-align: center;">10
+                                        </td>
+                                        <td id="k12DisplayOTRate"
+                                            style="border: 1px solid #999; padding: 6px 8px; text-align: center;">$40/hr
+                                        </td>
+                                        <td id="k12DisplayOTAmount"
+                                            style="border: 1px solid #999; padding: 6px 8px; text-align: right;">$400.00
+                                        </td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;">State Tax</td>
+                                        <td id="k12StateTax"
+                                            style="border: 1px solid #999; padding: 6px 8px; text-align: right;">$240.00
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">YTD Net
-                                            Pay:</td>
-                                        <td id="k12YTDNet"
-                                            style="border: 1px solid #999; padding: 5px; text-align: right; font-weight: bold;">
-                                            $7,647.90</td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;">Bonus</td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px; text-align: center;">-</td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px; text-align: center;">-</td>
+                                        <td id="k12DisplayBonus"
+                                            style="border: 1px solid #999; padding: 6px 8px; text-align: right;">$300.00
+                                        </td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;">Social Security</td>
+                                        <td id="k12SS"
+                                            style="border: 1px solid #999; padding: 6px 8px; text-align: right;">
+                                            $353.40</td>
                                     </tr>
-                                </table>
-                            </div>
-                            <div style="width: 40%;">
-                                <div
-                                    style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase; font-size: 14px;">
-                                    NET PAY DISTRIBUTION</div>
-                                <div id="k12NetPay"
-                                    style="background-color: #2b5c22; color: white; padding: 15px; text-align: center; font-size: 24px; font-weight: bold; border: 1px solid black;">
-                                    $3,823.95</div>
-                            </div>
-                        </div>
+                                    <tr>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;">&nbsp;</td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;"></td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;"></td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;"></td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;">Medicare</td>
+                                        <td id="k12Medicare"
+                                            style="border: 1px solid #999; padding: 6px 8px; text-align: right;">$82.65
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;">&nbsp;</td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;"></td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;"></td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;"></td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;">Health Insurance</td>
+                                        <td id="k12Health"
+                                            style="border: 1px solid #999; padding: 6px 8px; text-align: right;">$150.00
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;">&nbsp;</td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;"></td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;"></td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;"></td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;">Retirement (401k)</td>
+                                        <td id="k12Retirement"
+                                            style="border: 1px solid #999; padding: 6px 8px; text-align: right;">$200.00
+                                        </td>
+                                    </tr>
+                                    <tr style="font-weight: bold;">
+                                        <td colspan="2" style="border: none;"></td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px; text-align: right;">Total:
+                                        </td>
+                                        <td id="k12TotalEarnings"
+                                            style="border: 1px solid #999; padding: 6px 8px; text-align: right;">
+                                            $5,700.00
+                                        </td>
+                                        <td style="border: 1px solid #999; padding: 6px 8px;">Total Deductions:</td>
+                                        <td id="k12TotalDeductions"
+                                            style="border: 1px solid #999; padding: 6px 8px; text-align: right;">
+                                            $1,876.05
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                        <!-- Disclaimer -->
-                        <div
-                            style="margin-top: 40px; font-size: 10px; color: #666; text-align: center; font-style: italic; border: 1px solid #ccc; padding: 5px;">
-                            This document is a representation of earnings and deductions for the period specified.
-                            Please retain for your records.
+                            <!-- Footer Section -->
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                <div style="width: 40%;">
+                                    <div
+                                        style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase; font-size: 14px;">
+                                        YEAR-TO-DATE (YTD)</div>
+                                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px;">YTD Gross Pay:</td>
+                                            <td id="k12YTDGross"
+                                                style="border: 1px solid #999; padding: 5px; text-align: right;">
+                                                $11,400.00
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px;">YTD Deductions:</td>
+                                            <td id="k12YTDDeductions"
+                                                style="border: 1px solid #999; padding: 5px; text-align: right;">
+                                                $3,752.10
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">YTD Net
+                                                Pay:</td>
+                                            <td id="k12YTDNet"
+                                                style="border: 1px solid #999; padding: 5px; text-align: right; font-weight: bold;">
+                                                $7,647.90</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div style="width: 40%;">
+                                    <div
+                                        style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase; font-size: 14px;">
+                                        NET PAY DISTRIBUTION</div>
+                                    <div id="k12NetPay"
+                                        style="background-color: #2b5c22; color: white; padding: 15px; text-align: center; font-size: 24px; font-weight: bold; border: 1px solid black;">
+                                        $3,823.95</div>
+                                </div>
+                            </div>
+
+                            <!-- Disclaimer -->
+                            <div
+                                style="margin-top: 40px; font-size: 10px; color: #666; text-align: center; font-style: italic; border: 1px solid #ccc; padding: 5px;">
+                                This document is a representation of earnings and deductions for the period specified.
+                                Please retain for your records.
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- US Certificate Preview (hidden by default) -->
+        <div id="usContainer" class="bg-gray-100 p-4 rounded-2xl shadow-2xl" style="display: none;">
+            <div id="usCertificate" class="certificate-page bg-white p-[50px] shadow-xl text-gray-900"
+                style="font-family: 'Times New Roman', serif;">
+
+                <!-- University Header -->
+                <div
+                    style="text-align: center; margin-bottom: 40px; border-bottom: 2px solid #1e3a5f; padding-bottom: 20px;">
+                    <div id="usDisplayUniversity"
+                        style="font-size: 28px; font-weight: bold; color: #1e3a5f; text-transform: uppercase; letter-spacing: 2px;">
+                        HARVARD UNIVERSITY
+                    </div>
+                    <div id="usDisplayAddress" style="font-size: 14px; color: #555; margin-top: 8px;">
+                        Cambridge, MA 02138
+                    </div>
+                    <div style="font-size: 12px; color: #888; margin-top: 5px;">
+                        Office of the University Registrar
+                    </div>
+                </div>
+
+                <!-- Title -->
+                <div style="text-align: center; margin: 40px 0;">
+                    <div
+                        style="font-size: 24px; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; border: 2px solid #1e3a5f; display: inline-block; padding: 15px 40px; color: #1e3a5f;">
+                        CERTIFICATE OF ENROLLMENT
+                    </div>
+                    <div style="font-size: 16px; margin-top: 15px; color: #555;">
+                        Academic Year <span id="usDisplayYear">2025-2026</span>
+                    </div>
+                </div>
+
+                <!-- Body -->
+                <div style="line-height: 2; font-size: 16px; margin: 40px 0;">
+                    <p style="margin-bottom: 20px;">This is to certify that</p>
+
+                    <div style="text-align: center; margin: 30px 0;">
+                        <div id="usDisplayName"
+                            style="font-size: 22px; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid #333; display: inline-block; padding: 5px 30px;">
+                            JOHN SMITH
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <span style="font-weight: bold;">Student ID:</span> <span
+                                id="usDisplayStudentId">123456789</span>
+                        </div>
+                        <div style="margin-top: 5px;">
+                            <span style="font-weight: bold;">Date of Birth:</span> <span
+                                id="usDisplayDOB">01/15/2003</span>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 30px;">
+                        is currently enrolled as a <span id="usDisplayStatus"
+                            style="font-weight: bold;">full-time</span> student
+                        at <span id="usDisplayUniversityBody" style="font-weight: bold;">Harvard University</span>
+                        pursuing a Bachelor's degree in <span id="usDisplayMajor" style="font-weight: bold;">Computer
+                            Science</span>.
+                    </p>
+
+                    <p style="margin-top: 15px;">
+                        <span style="font-weight: bold;">Classification:</span> <span
+                            id="usDisplayClassification">Sophomore</span>
+                    </p>
+
+                    <p style="margin-top: 30px; font-style: italic; color: #555;">
+                        This certificate is issued for official purposes upon request.
+                    </p>
+                </div>
+
+                <!-- Signature Block -->
+                <div style="display: flex; justify-content: space-between; margin-top: 60px;">
+                    <div style="width: 45%;">
+                        <p style="margin: 0;">Issued at <span id="usDisplayCity">Cambridge, MA</span></p>
+                        <p style="margin: 5px 0;">on <span id="usDisplayIssueDate">December 15, 2025</span></p>
+                    </div>
+                    <div style="width: 45%; text-align: center;">
+                        <div style="border-top: 1px solid #333; margin-top: 40px; padding-top: 10px;">
+                            <p style="margin: 0; font-weight: bold;">Office of the Registrar</p>
+                            <p id="usDisplayRegistrar"
+                                style="margin: 5px 0; font-family: 'Dancing Script', cursive; font-size: 20px; color: #1e3a5f;">
+                                Dr. Sarah Johnson
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div
+                    style="margin-top: 50px; font-size: 10px; color: #888; text-align: center; border-top: 1px solid #ddd; padding-top: 15px;">
+                    This document is official when bearing the seal and signature of the University Registrar.
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     </div>
 
     <script>
@@ -846,27 +1092,68 @@
             ]
         };
 
+        // ========== US UNIVERSITIES DATA ==========
+        const usUniversitiesData = {
+            universities: [
+                { name: "Harvard University", address: "Cambridge, MA 02138", city: "Cambridge, MA" },
+                { name: "Stanford University", address: "Stanford, CA 94305", city: "Stanford, CA" },
+                { name: "Massachusetts Institute of Technology", address: "Cambridge, MA 02139", city: "Cambridge, MA" },
+                { name: "Yale University", address: "New Haven, CT 06520", city: "New Haven, CT" },
+                { name: "Columbia University", address: "New York, NY 10027", city: "New York, NY" },
+                { name: "University of California, Los Angeles", address: "Los Angeles, CA 90095", city: "Los Angeles, CA" },
+                { name: "New York University", address: "New York, NY 10012", city: "New York, NY" },
+                { name: "University of California, Berkeley", address: "Berkeley, CA 94720", city: "Berkeley, CA" },
+                { name: "University of Chicago", address: "Chicago, IL 60637", city: "Chicago, IL" },
+                { name: "Princeton University", address: "Princeton, NJ 08544", city: "Princeton, NJ" },
+                { name: "Duke University", address: "Durham, NC 27708", city: "Durham, NC" },
+                { name: "University of Pennsylvania", address: "Philadelphia, PA 19104", city: "Philadelphia, PA" }
+            ],
+            majors: [
+                "Computer Science", "Business Administration", "Psychology", "Biology",
+                "Mechanical Engineering", "Economics", "Political Science", "Mathematics",
+                "Chemistry", "Physics", "English Literature", "Communications"
+            ],
+            classifications: ["Freshman", "Sophomore", "Junior", "Senior", "Graduate Student"],
+            firstNames: [
+                "James", "John", "Michael", "William", "David", "Christopher", "Matthew", "Daniel",
+                "Emma", "Olivia", "Sophia", "Isabella", "Ava", "Emily", "Madison", "Charlotte"
+            ],
+            lastNames: [
+                "Smith", "Johnson", "Williams", "Brown", "Jones", "Miller", "Davis", "Wilson",
+                "Anderson", "Taylor", "Thomas", "Moore", "Jackson", "Martin", "Lee", "Thompson"
+            ],
+            registrars: [
+                "Dr. Sarah Johnson", "Dr. Michael Roberts", "Dr. Jennifer Williams",
+                "Dr. David Chen", "Dr. Elizabeth Taylor", "Dr. Robert Anderson"
+            ]
+        };
+
         // ========== MODE MANAGEMENT ==========
-        let currentMode = 'FR'; // 'FR' or 'K12'
+        let currentMode = 'FR'; // 'FR', 'US', or 'K12'
 
         function switchMode(mode) {
             currentMode = mode;
 
             // Toggle form visibility
             document.getElementById('formFR').style.display = mode === 'FR' ? 'block' : 'none';
+            document.getElementById('formUS').style.display = mode === 'US' ? 'block' : 'none';
             document.getElementById('formK12').style.display = mode === 'K12' ? 'block' : 'none';
 
             // Toggle preview visibility
             document.getElementById('certificateContainer').style.display = mode === 'FR' ? 'block' : 'none';
+            document.getElementById('usContainer').style.display = mode === 'US' ? 'block' : 'none';
             document.getElementById('paystubContainer').style.display = mode === 'K12' ? 'block' : 'none';
 
             // Update button states
             document.getElementById('modeFR').classList.toggle('active', mode === 'FR');
+            document.getElementById('modeUS').classList.toggle('active', mode === 'US');
             document.getElementById('modeK12').classList.toggle('active', mode === 'K12');
 
             // Generate random data for the new mode
             if (mode === 'FR') {
                 generateRandom();
+            } else if (mode === 'US') {
+                generateRandomUS();
             } else {
                 generateRandomK12();
             }
@@ -1073,6 +1360,106 @@
             document.getElementById('certSignature').textContent = signatureName;
         }
 
+        // ========== GENERATE RANDOM US ==========
+        function generateRandomUS() {
+            console.log('🎲 Generating random US certificate...');
+
+            // Random student
+            const firstName = randomFromArray(usUniversitiesData.firstNames);
+            const lastName = randomFromArray(usUniversitiesData.lastNames);
+            const university = randomFromArray(usUniversitiesData.universities);
+            const major = randomFromArray(usUniversitiesData.majors);
+            const classification = randomFromArray(usUniversitiesData.classifications);
+            const status = randomFromArray(['Full-time', 'Part-time']);
+            const registrar = randomFromArray(usUniversitiesData.registrars);
+
+            // Random birth date (1999-2005 = 19-26 years old)
+            const birthYear = randomInt(1999, 2005);
+            const birthMonth = padZero(randomInt(1, 12), 2);
+            const birthDay = padZero(randomInt(1, 28), 2);
+            const birthDate = `${birthYear}-${birthMonth}-${birthDay}`;
+
+            // Student ID (9 digits)
+            const studentId = padZero(randomInt(100000000, 999999999), 9);
+
+            // Today's date
+            const today = new Date().toISOString().split('T')[0];
+
+            // Fill form
+            document.getElementById('usUniversityName').value = university.name;
+            document.getElementById('usUniversityAddress').value = university.address;
+            document.getElementById('usFirstName').value = firstName;
+            document.getElementById('usLastName').value = lastName;
+            document.getElementById('usDOB').value = birthDate;
+            document.getElementById('usStudentId').value = studentId;
+            document.getElementById('usMajor').value = major;
+            document.getElementById('usClassification').value = classification;
+            document.getElementById('usStatus').value = status;
+            document.getElementById('usAcademicYear').value = '2025-2026';
+            document.getElementById('usRegistrarName').value = registrar;
+            document.getElementById('usIssueDate').value = today;
+
+            // Store city for preview
+            window.currentUSCity = university.city;
+
+            // Update preview
+            updateUSPreview();
+            console.log('✅ US certificate generated');
+        }
+
+        // ========== UPDATE US PREVIEW ==========
+        function updateUSPreview() {
+            const universityName = document.getElementById('usUniversityName').value;
+            const universityAddress = document.getElementById('usUniversityAddress').value;
+            const firstName = document.getElementById('usFirstName').value;
+            const lastName = document.getElementById('usLastName').value;
+            const dob = document.getElementById('usDOB').value;
+            const studentId = document.getElementById('usStudentId').value;
+            const major = document.getElementById('usMajor').value;
+            const classification = document.getElementById('usClassification').value;
+            const status = document.getElementById('usStatus').value;
+            const academicYear = document.getElementById('usAcademicYear').value;
+            const registrar = document.getElementById('usRegistrarName').value;
+            const issueDate = document.getElementById('usIssueDate').value;
+
+            // Format date as US style (Month DD, YYYY)
+            const formatUSDateLong = (dateStr) => {
+                if (!dateStr) return 'December 15, 2025';
+                const date = new Date(dateStr);
+                const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+                return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+            };
+
+            // Format DOB as MM/DD/YYYY
+            const formatDOB = (dateStr) => {
+                if (!dateStr) return '01/15/2003';
+                const date = new Date(dateStr);
+                return `${padZero(date.getMonth() + 1, 2)}/${padZero(date.getDate(), 2)}/${date.getFullYear()}`;
+            };
+
+            // Update header
+            document.getElementById('usDisplayUniversity').textContent = universityName || 'HARVARD UNIVERSITY';
+            document.getElementById('usDisplayAddress').textContent = universityAddress || 'Cambridge, MA 02138';
+            document.getElementById('usDisplayYear').textContent = academicYear || '2025-2026';
+
+            // Update student info
+            document.getElementById('usDisplayName').textContent = `${firstName} ${lastName}`.toUpperCase() || 'JOHN SMITH';
+            document.getElementById('usDisplayStudentId').textContent = studentId || '123456789';
+            document.getElementById('usDisplayDOB').textContent = formatDOB(dob);
+
+            // Update enrollment info
+            document.getElementById('usDisplayStatus').textContent = status.toLowerCase() || 'full-time';
+            document.getElementById('usDisplayUniversityBody').textContent = universityName || 'Harvard University';
+            document.getElementById('usDisplayMajor').textContent = major || 'Computer Science';
+            document.getElementById('usDisplayClassification').textContent = classification || 'Sophomore';
+
+            // Update signature
+            document.getElementById('usDisplayCity').textContent = window.currentUSCity || 'Cambridge, MA';
+            document.getElementById('usDisplayIssueDate').textContent = formatUSDateLong(issueDate);
+            document.getElementById('usDisplayRegistrar').textContent = registrar || 'Dr. Sarah Johnson';
+        }
+
         // ========== GENERATE RANDOM K12 ==========
         function generateRandomK12() {
             console.log('🎲 Génération K12 aléatoire...');
@@ -1239,7 +1626,14 @@
         // ========== DOWNLOAD AS IMAGE ==========
         async function downloadCertificate() {
             // Select the correct element based on current mode
-            const elementId = currentMode === 'FR' ? 'certificate' : 'paystub';
+            let elementId;
+            if (currentMode === 'FR') {
+                elementId = 'certificate';
+            } else if (currentMode === 'US') {
+                elementId = 'usCertificate';
+            } else {
+                elementId = 'paystub';
+            }
             const element = document.getElementById(elementId);
             console.log(`📥 Démarrage du téléchargement (mode: ${currentMode})...`);
 
@@ -1280,6 +1674,10 @@
                     const nom = document.getElementById('nomEtudiant').value || 'certificat';
                     const prenom = document.getElementById('prenomEtudiant').value || '';
                     filename = `certificat_${nom}_${prenom}.png`;
+                } else if (currentMode === 'US') {
+                    const firstName = document.getElementById('usFirstName').value || 'student';
+                    const lastName = document.getElementById('usLastName').value || '';
+                    filename = `us_certificate_${firstName}_${lastName}.png`;
                 } else {
                     const empName = document.getElementById('k12EmpName').value || 'paystub';
                     filename = `paystub_${empName.replace(/\s+/g, '_')}.png`;
@@ -1333,6 +1731,13 @@
             k12Inputs.forEach(input => {
                 input.addEventListener('input', updateK12Preview);
                 input.addEventListener('change', updateK12Preview);
+            });
+
+            // Live update on input change for US form
+            const usInputs = document.querySelectorAll('#formUS input, #formUS select');
+            usInputs.forEach(input => {
+                input.addEventListener('input', updateUSPreview);
+                input.addEventListener('change', updateUSPreview);
             });
 
             // Generate random data on load (FR mode by default)
