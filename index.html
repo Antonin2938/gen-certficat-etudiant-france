@@ -436,7 +436,7 @@
                     </div>
                 </div>
 
-                <!-- US Enrollment Form (hidden by default) -->
+                <!-- US Tuition Receipt Form (hidden by default) -->
                 <div id="formUS" class="space-y-4" style="display: none;">
                     <!-- University Section -->
                     <div class="border-b border-gray-700 pb-4 mb-4">
@@ -450,10 +450,21 @@
                                     placeholder="Harvard University">
                             </div>
                             <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1">Department/School</label>
+                                <input type="text" id="usDepartment"
+                                    class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
+                                    placeholder="School of Engineering">
+                            </div>
+                            <div>
                                 <label class="block text-sm font-medium text-gray-300 mb-1">Address</label>
                                 <input type="text" id="usUniversityAddress"
                                     class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
-                                    placeholder="Massachusetts Hall, Cambridge, MA 02138">
+                                    placeholder="Cambridge, MA 02138">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1">Logo (optional)</label>
+                                <input type="file" id="usLogoFile" accept="image/*"
+                                    class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-sm file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:bg-blue-600 file:text-white file:cursor-pointer">
                             </div>
                         </div>
                     </div>
@@ -461,7 +472,7 @@
                     <!-- Student Section -->
                     <div class="border-b border-gray-700 pb-4 mb-4">
                         <h3 class="text-lg font-semibold text-purple-400 mb-4"><i
-                                class="fas fa-user-graduate mr-2"></i>Student</h3>
+                                class="fas fa-user-graduate mr-2"></i>Student Info</h3>
                         <div class="space-y-3">
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
@@ -484,11 +495,32 @@
                                         class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-300 mb-1">Student ID (9
-                                        digits)</label>
-                                    <input type="text" id="usStudentId" maxlength="9"
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Gender</label>
+                                    <select id="usGender"
+                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg">
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1">Student ID</label>
+                                <input type="text" id="usStudentId"
+                                    class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
+                                    placeholder="123456789">
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Father's Name</label>
+                                    <input type="text" id="usFatherName"
                                         class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
-                                        placeholder="123456789">
+                                        placeholder="Robert Smith">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Mother's Name</label>
+                                    <input type="text" id="usMotherName"
+                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
+                                        placeholder="Mary Smith">
                                 </div>
                             </div>
                         </div>
@@ -501,106 +533,105 @@
                         <div class="space-y-3">
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-300 mb-1">Major/Program</label>
-                                    <input type="text" id="usMajor"
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Program</label>
+                                    <input type="text" id="usProgram"
                                         class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
-                                        placeholder="Computer Science">
+                                        placeholder="Bachelor of Science">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-300 mb-1">Degree Program</label>
-                                    <input type="text" id="usDegree"
-                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
-                                        placeholder="Bachelor of Science (B.S.)">
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2 gap-3">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-300 mb-1">Enrollment
-                                        Status</label>
-                                    <select id="usEnrollmentStatus"
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Medium</label>
+                                    <select id="usMedium"
                                         class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg">
-                                        <option>Full-time</option>
-                                        <option>Part-time</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-300 mb-1">Academic
-                                        Standing</label>
-                                    <select id="usAcademicStanding"
-                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg">
-                                        <option>Good Standing</option>
-                                        <option>Dean's List</option>
-                                        <option>Honors</option>
+                                        <option>English</option>
+                                        <option>Spanish</option>
+                                        <option>French</option>
                                     </select>
                                 </div>
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-300 mb-1">Expected Graduation</label>
-                                <input type="text" id="usExpectedGraduation"
+                                <label class="block text-sm font-medium text-gray-300 mb-1">Exam Center</label>
+                                <input type="text" id="usExamCenter"
                                     class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
-                                    placeholder="May 2027">
+                                    placeholder="Main Campus">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1">Courses Enrolled</label>
+                                <textarea id="usCoursesEnrolled" rows="2"
+                                    class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-sm"
+                                    placeholder="CS101; MATH201; PHY301..."></textarea>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Term Section -->
+                    <!-- Contact Section -->
                     <div class="border-b border-gray-700 pb-4 mb-4">
                         <h3 class="text-lg font-semibold text-green-400 mb-4"><i
-                                class="fas fa-calendar-alt mr-2"></i>Academic Term</h3>
+                                class="fas fa-address-card mr-2"></i>Contact</h3>
                         <div class="space-y-3">
                             <div>
-                                <label class="block text-sm font-medium text-gray-300 mb-1">Current Term</label>
-                                <select id="usAcademicTerm"
-                                    class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg">
-                                    <option>Fall 2025</option>
-                                    <option>Spring 2025</option>
-                                    <option>Summer 2025</option>
-                                    <option>Fall 2024</option>
-                                    <option>Spring 2026</option>
-                                </select>
+                                <label class="block text-sm font-medium text-gray-300 mb-1">Mailing Address</label>
+                                <input type="text" id="usMailingAddress"
+                                    class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
+                                    placeholder="123 Main St, City, State ZIP">
                             </div>
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-300 mb-1">Term Start Date</label>
-                                    <input type="date" id="usTermStart"
-                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg">
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                                    <input type="email" id="usEmail"
+                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
+                                        placeholder="john.smith@email.com">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-300 mb-1">Term End Date</label>
-                                    <input type="date" id="usTermEnd"
-                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg">
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Phone</label>
+                                    <input type="text" id="usPhone"
+                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
+                                        placeholder="(555) 123-4567">
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Registrar Section -->
+                    <!-- Payment Section -->
                     <div>
                         <h3 class="text-lg font-semibold text-emerald-400 mb-4"><i
-                                class="fas fa-signature mr-2"></i>Registrar</h3>
+                                class="fas fa-credit-card mr-2"></i>Payment Details</h3>
                         <div class="space-y-3">
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Pay Mode</label>
+                                    <select id="usPayMode"
+                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg">
+                                        <option>Credit Card</option>
+                                        <option>Check</option>
+                                        <option>Wire Transfer</option>
+                                        <option>Cash</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Reference No.</label>
+                                    <input type="text" id="usRefNo"
+                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
+                                        placeholder="TXN123456">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Date of Issue</label>
+                                    <input type="date" id="usDateIssue"
+                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Bank</label>
+                                    <input type="text" id="usBank"
+                                        class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
+                                        placeholder="Bank of America">
+                                </div>
+                            </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-300 mb-1">Registrar Name</label>
-                                <input type="text" id="usRegistrarName"
+                                <label class="block text-sm font-medium text-gray-300 mb-1">Amount ($)</label>
+                                <input type="number" id="usAmount"
                                     class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg"
-                                    placeholder="Dr. Jane Smith">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-300 mb-1">Date Issued</label>
-                                <input type="date" id="usDateIssued"
-                                    class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-300 mb-1">Purpose</label>
-                                <select id="usPurpose"
-                                    class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg">
-                                    <option>employment verification</option>
-                                    <option>visa purposes</option>
-                                    <option>financial aid verification</option>
-                                    <option>insurance purposes</option>
-                                    <option>scholarship application</option>
-                                    <option>housing application</option>
-                                </select>
+                                    placeholder="15000" value="15000">
                             </div>
                         </div>
                     </div>
@@ -912,84 +943,260 @@
                     </div>
                 </div>
 
-                <!-- US Enrollment Certificate Preview (hidden by default) -->
+                <!-- US Tuition Receipt Preview (hidden by default) -->
                 <div id="usEnrollmentContainer" class="bg-gray-100 p-4 rounded-2xl shadow-2xl" style="display: none;">
-                    <!-- Certificate Preview - Same format as FR but in English -->
-                    <div id="usEnrollment" class="certificate-page bg-[#f5f5dc] p-[40px] shadow-xl text-gray-900"
-                        style="font-family: 'Times New Roman', serif; line-height: 2.2;">
+                    <div id="usEnrollment"
+                        style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; background: #f5f5dc; width: 210mm; min-height: 297mm; padding: 12mm 18mm; position: relative; color: #000;">
 
-                        <!-- Header -->
-                        <div class="text-center mb-8">
-                            <h3 class="text-base font-normal m-0" id="usDisplayUniversity">HARVARD UNIVERSITY</h3>
-                            <h3 class="text-base font-normal m-0" id="usDisplayAddress">Massachusetts Hall, Cambridge,
-                                MA 02138
-                            </h3>
-                            <hr class="w-12 mx-auto my-3 border-black">
-                            <h1 class="text-2xl font-bold underline my-5">ENROLLMENT CERTIFICATE</h1>
-                            <h2 class="text-lg font-normal my-4">ACADEMIC YEAR <span id="usDisplayAcademicYear">2025 -
-                                    2026</span>
-                            </h2>
-                        </div>
-
-                        <!-- Content -->
-                        <div class="content">
-                            <p class="m-0">I, the undersigned <span id="usDisplayRegistrarTitle">Registrar</span> <span
-                                    id="usDisplayRegistrarIntro" class="font-medium">"Registrar Name"</span></p>
-                            <p class="m-0">Hereby certify that <span id="usDisplayHeOrShe">the</span> student named
-                                <span id="usDisplayFullName" class="font-medium">"LAST NAME First Name"</span>
-                            </p>
-                            <p class="m-0">Aged <span id="usDisplayAge" class="font-medium">"21"</span> years old</p>
-                            <p class="m-0">is regularly attending <span id="usDisplayDegree"
-                                    class="font-medium">"Bachelor of Science"</span> courses</p>
-                            <p class="m-0">in <span id="usDisplayMajor" class="font-medium">"Computer Science"</span> at
-                                my institution where he/she has been enrolled since</p>
-                            <p class="m-0">the <span id="usDisplayEnrollmentDate" class="font-medium">08/25/2025</span>
-                                expiring on <span id="usDisplayExpirationDate" class="font-medium">05/15/2026</span></p>
-                        </div>
-
-                        <!-- Certification Box -->
-                        <div class="my-5 pl-4 border-l-2 border-black" style="line-height: 2;">
-                            <p class="m-0">I certify</p>
-                            <p class="m-0">that <span id="usDisplayHeOrShe2">he/she</span> does not receive (1)</p>
-                            <p class="m-0">that <span id="usDisplayHeOrShe3">he/she</span> receives (1) a scholarship
-                                grant
-                            </p>
-                        </div>
-
-                        <!-- Footer -->
-                        <div class="flex justify-between mt-20">
-                            <!-- Left Footer -->
-                            <div class="w-[48%]">
-                                <div class="mb-6">
-                                    <p class="m-0"><small>(Name-Title<br>and position of Signatory)</small></p>
+                        <!-- Content wrapper -->
+                        <div style="position: relative; z-index: 1;">
+                            <!-- Header with logo -->
+                            <div style="display: flex; align-items: flex-start; margin-bottom: 5px;">
+                                <div id="usLogoContainer"
+                                    style="width: 70px; height: 70px; margin-right: 20px; display: flex; align-items: center; justify-content: center;">
+                                    <img id="usLogo" src="" alt="Logo"
+                                        style="max-width: 70px; max-height: 70px; display: none;">
+                                    <span id="usLogoPlaceholder"
+                                        style="border: 1px dashed #999; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 9px; text-align: center; color: #666;">Logo<br>University</span>
                                 </div>
-
-                                <div class="mt-6">
-                                    <p class="m-0 font-bold">Payment method</p>
-                                    <p class="m-0 font-bold">Wire Transfer - Check - Cash</p>
-                                </div>
-
-                                <div class="mt-8">
-                                    <p class="m-0"><small>Student ID Number<br>or Social Security Number</small></p>
-                                    <p class="mt-5"><span id="usDisplayStudentId"
-                                            class="text-red-600 font-medium">"123456789"</span></p>
+                                <div style="text-align: center; flex: 1; padding-right: 90px;">
+                                    <h1 id="usDisplayUniversity"
+                                        style="font-size: 16px; font-weight: bold; margin: 0 0 2px 0;">UNIVERSITY NAME
+                                    </h1>
+                                    <p id="usDisplayDepartment" style="font-size: 12px; margin: 0 0 1px 0;">
+                                        (Department/School)</p>
+                                    <p id="usDisplayParent" style="font-size: 12px; margin: 0 0 1px 0;">Parent
+                                        Institution</p>
+                                    <p id="usDisplayAddress" style="font-size: 11px; margin: 0;">City, State ZIP</p>
                                 </div>
                             </div>
 
-                            <!-- Right Footer -->
-                            <div class="w-[48%] text-center">
-                                <p class="m-0">Done at <span id="usDisplayCity" class="font-medium">Cambridge</span></p>
-                                <p class="m-0">On <span id="usDisplayDateIssued" class="font-medium">12/15/2025</span>
-                                </p>
-                                <p class="mt-8 font-bold">Signature and Seal</p>
-                                <div class="border border-black p-4 mt-5 min-h-[80px] flex items-center justify-center">
-                                    <span id="usDisplaySignature" class="text-2xl text-blue-900"
-                                        style="font-family: 'Dancing Script', cursive;">Signature</span>
+                            <!-- Tuition Receipt Title -->
+                            <div style="text-align: center; margin: 12px 0 18px 0;">
+                                <h2
+                                    style="font-size: 14px; font-weight: bold; text-decoration: underline; color: #003366; margin: 0;">
+                                    Tuition Receipt</h2>
+                            </div>
+
+                            <!-- Barcode and Receipt No -->
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 15px; height: 40px;">
+                                <div id="usBarcode">
+                                    <svg width="220" height="40">
+                                        <rect x="0" y="0" width="3" height="40" fill="black" />
+                                        <rect x="5" y="0" width="1" height="40" fill="black" />
+                                        <rect x="8" y="0" width="4" height="40" fill="black" />
+                                        <rect x="14" y="0" width="1" height="40" fill="black" />
+                                        <rect x="17" y="0" width="2" height="40" fill="black" />
+                                        <rect x="21" y="0" width="1" height="40" fill="black" />
+                                        <rect x="24" y="0" width="3" height="40" fill="black" />
+                                        <rect x="29" y="0" width="1" height="40" fill="black" />
+                                        <rect x="32" y="0" width="2" height="40" fill="black" />
+                                        <rect x="36" y="0" width="1" height="40" fill="black" />
+                                        <rect x="39" y="0" width="4" height="40" fill="black" />
+                                        <rect x="45" y="0" width="2" height="40" fill="black" />
+                                        <rect x="49" y="0" width="1" height="40" fill="black" />
+                                        <rect x="52" y="0" width="3" height="40" fill="black" />
+                                        <rect x="57" y="0" width="4" height="40" fill="black" />
+                                        <rect x="63" y="0" width="1" height="40" fill="black" />
+                                        <rect x="66" y="0" width="2" height="40" fill="black" />
+                                        <rect x="70" y="0" width="1" height="40" fill="black" />
+                                        <rect x="73" y="0" width="3" height="40" fill="black" />
+                                        <rect x="78" y="0" width="1" height="40" fill="black" />
+                                        <rect x="81" y="0" width="2" height="40" fill="black" />
+                                        <rect x="85" y="0" width="1" height="40" fill="black" />
+                                        <rect x="88" y="0" width="4" height="40" fill="black" />
+                                        <rect x="94" y="0" width="2" height="40" fill="black" />
+                                        <rect x="98" y="0" width="1" height="40" fill="black" />
+                                        <rect x="101" y="0" width="3" height="40" fill="black" />
+                                        <rect x="106" y="0" width="1" height="40" fill="black" />
+                                        <rect x="109" y="0" width="4" height="40" fill="black" />
+                                        <rect x="115" y="0" width="1" height="40" fill="black" />
+                                        <rect x="118" y="0" width="2" height="40" fill="black" />
+                                        <rect x="122" y="0" width="1" height="40" fill="black" />
+                                        <rect x="125" y="0" width="3" height="40" fill="black" />
+                                        <rect x="130" y="0" width="2" height="40" fill="black" />
+                                        <rect x="134" y="0" width="1" height="40" fill="black" />
+                                        <rect x="137" y="0" width="4" height="40" fill="black" />
+                                        <rect x="143" y="0" width="1" height="40" fill="black" />
+                                        <rect x="146" y="0" width="2" height="40" fill="black" />
+                                        <rect x="150" y="0" width="1" height="40" fill="black" />
+                                        <rect x="153" y="0" width="3" height="40" fill="black" />
+                                        <rect x="158" y="0" width="1" height="40" fill="black" />
+                                        <rect x="161" y="0" width="2" height="40" fill="black" />
+                                    </svg>
+                                </div>
+                                <div style="font-weight: bold; font-size: 12px;">Receipt No : <span
+                                        id="usDisplayReceiptNo" style="font-weight: normal;">RCP-2025-001234</span>
                                 </div>
                             </div>
-                        </div>
 
-                        <p class="text-sm text-center mt-16">(1) Strike out as appropriate</p>
+                            <!-- Main Info Grid -->
+                            <div
+                                style="display: grid; grid-template-columns: 120px 8px 1.3fr 60px 8px 0.7fr 100px 8px 1fr; gap: 12px 10px; font-size: 11px; line-height: 1.5; margin-bottom: 24px;">
+                                <!-- Row 1: Barcode No, Medium, User -->
+                                <div style="font-weight: bold;">Barcode No</div>
+                                <div style="text-align: center;">:</div>
+                                <div id="usDisplayBarcodeNo">BC-123456789</div>
+
+                                <div style="font-weight: bold;">Medium</div>
+                                <div style="text-align: center;">:</div>
+                                <div id="usDisplayMedium">English</div>
+
+                                <div style="font-weight: bold;">User</div>
+                                <div style="text-align: center;">:</div>
+                                <div id="usDisplayUser">ADMIN</div>
+
+                                <!-- Row 2: Program, Gender, Date -->
+                                <div style="font-weight: bold;">Program</div>
+                                <div style="text-align: center;">:</div>
+                                <div id="usDisplayProgram">Bachelor of Science</div>
+
+                                <div style="font-weight: bold;">Gender</div>
+                                <div style="text-align: center;">:</div>
+                                <div id="usDisplayGender">Male</div>
+
+                                <div style="font-weight: bold;">Date</div>
+                                <div style="text-align: center;">:</div>
+                                <div id="usDisplayDate">01/10/2026</div>
+
+                                <!-- Row 3: Name, Student ID -->
+                                <div style="font-weight: bold;">Name</div>
+                                <div style="text-align: center;">:</div>
+                                <div id="usDisplayFullName">John Smith</div>
+
+                                <div></div>
+                                <div></div>
+                                <div></div>
+
+                                <div style="font-weight: bold;">Student ID</div>
+                                <div style="text-align: center;">:</div>
+                                <div id="usDisplayStudentId">123456789</div>
+
+                                <!-- Row 4: Father's Name, Exam Center -->
+                                <div style="font-weight: bold;">Father's Name</div>
+                                <div style="text-align: center;">:</div>
+                                <div id="usDisplayFatherName">Robert Smith</div>
+
+                                <div></div>
+                                <div></div>
+                                <div></div>
+
+                                <div style="font-weight: bold;">Exam Center</div>
+                                <div style="text-align: center;">:</div>
+                                <div id="usDisplayExamCenter">Main Campus</div>
+
+                                <!-- Row 5: Mother's Name, Date of Birth -->
+                                <div style="font-weight: bold;">Mother's Name</div>
+                                <div style="text-align: center;">:</div>
+                                <div id="usDisplayMotherName">Mary Smith</div>
+
+                                <div></div>
+                                <div></div>
+                                <div></div>
+
+                                <div style="font-weight: bold;">Date of Birth</div>
+                                <div style="text-align: center;">:</div>
+                                <div id="usDisplayDOB">05/15/2000</div>
+                            </div>
+
+                            <!-- Mailing Address (full width) -->
+                            <div
+                                style="display: grid; grid-template-columns: 120px 8px 1fr; gap: 6px 10px; margin-bottom: 22px;">
+                                <div style="font-weight: bold;">Mailing Address</div>
+                                <div style="text-align: center;">:</div>
+                                <div id="usDisplayMailingAddress">123 Main Street, Cambridge, MA 02138</div>
+                            </div>
+
+                            <!-- Email + Phone -->
+                            <div
+                                style="display: grid; grid-template-columns: 120px 8px 1fr 80px 8px 1fr; gap: 6px 10px; margin-bottom: 22px;">
+                                <div style="font-weight: bold;">Email</div>
+                                <div style="text-align: center;">:</div>
+                                <div id="usDisplayEmail">john.smith@email.com</div>
+
+                                <div style="font-weight: bold;">Phone No</div>
+                                <div style="text-align: center;">:</div>
+                                <div id="usDisplayPhone">(555) 123-4567</div>
+                            </div>
+
+                            <!-- Courses Enrolled -->
+                            <div
+                                style="display: grid; grid-template-columns: 120px 8px 1fr; gap: 6px 10px; margin-bottom: 26px; font-size: 10px;">
+                                <div style="font-weight: bold;">Courses Enrolled</div>
+                                <div style="text-align: center;">:</div>
+                                <div id="usDisplayCourses">Introduction to Computer Science (CS101); Calculus I
+                                    (MATH101); Physics I (PHY101); English Composition (ENG101); General Chemistry
+                                    (CHEM101)</div>
+                            </div>
+
+                            <!-- Payment Details -->
+                            <div style="font-weight: bold; font-size: 13px; margin-bottom: 12px; margin-top: 8px;">
+                                Payment Details</div>
+
+                            <table style="width: 100%; border-collapse: collapse; font-size: 11px;">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: left; font-weight: bold; padding: 6px 0; width: 15%;">Pay
+                                            Mode</th>
+                                        <th style="text-align: left; font-weight: bold; padding: 6px 0; width: 20%;">
+                                            Ref. No.</th>
+                                        <th style="text-align: left; font-weight: bold; padding: 6px 0; width: 20%;">
+                                            Date of Issue</th>
+                                        <th style="text-align: left; font-weight: bold; padding: 6px 0; width: 25%;">
+                                            Bank</th>
+                                        <th style="text-align: right; font-weight: bold; padding: 6px 0; width: 20%;">
+                                            Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="usDisplayPayMode" style="text-align: left; padding: 6px 0;">Credit Card
+                                        </td>
+                                        <td id="usDisplayRefNo" style="text-align: left; padding: 6px 0;">TXN123456</td>
+                                        <td id="usDisplayDateIssue" style="text-align: left; padding: 6px 0;">01/10/2026
+                                        </td>
+                                        <td id="usDisplayBank" style="text-align: left; padding: 6px 0;">Bank of America
+                                        </td>
+                                        <td id="usDisplayAmount" style="text-align: right; padding: 6px 0;">$15,000.00
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div
+                                style="display: flex; justify-content: space-between; margin-top: 12px; font-size: 11px;">
+                                <div id="usDisplayAmountWords" style="text-align: center; flex: 1;">(Fifteen Thousand
+                                    Dollars Only)</div>
+                                <div id="usDisplayTotalAmount"
+                                    style="font-weight: bold; text-align: right; min-width: 60px;">$15,000.00</div>
+                            </div>
+
+                            <!-- Notes -->
+                            <div style="margin-top: 25px; font-size: 10px; line-height: 1.5;">
+                                <div style="margin-bottom: 10px; display: flex;">
+                                    <span style="font-weight: bold; color: #cc0000; min-width: 45px;">Note1:</span>
+                                    <div style="flex: 1;">This receipt confirms admission subject to verification of
+                                        documents. This is a computer-generated receipt and does not require a physical
+                                        signature.</div>
+                                </div>
+                                <div style="margin-bottom: 10px; display: flex;">
+                                    <span style="font-weight: bold; color: #cc0000; min-width: 45px;">Note2:</span>
+                                    <div style="flex: 1;">For document collection please visit <span
+                                            style="font-weight: bold; color: #cc0000;">Registrar's Office</span> on
+                                        <span style="font-weight: bold; color: #cc0000;">Main Campus</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Footer -->
+                            <div style="margin-top: 30px; text-align: center; font-size: 11px;">
+                                For future communications, please update your records with email
+                                <span id="usDisplayFooterEmail" style="font-weight: bold;">john.smith@email.com</span>
+                                and Phone No
+                                <span id="usDisplayFooterPhone" style="font-weight: bold;">(555) 123-4567</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1100,24 +1307,24 @@
             ]
         };
 
-        // ========== US UNIVERSITY DATA ==========
+        // ========== US UNIVERSITY DATA (Tuition Receipt) ==========
         const usUniversityData = {
             universities: [
-                { name: "Harvard University", address: "Massachusetts Hall, Cambridge, MA 02138", city: "Cambridge", state: "MA" },
-                { name: "Stanford University", address: "450 Serra Mall, Stanford, CA 94305", city: "Stanford", state: "CA" },
-                { name: "Massachusetts Institute of Technology", address: "77 Massachusetts Ave, Cambridge, MA 02139", city: "Cambridge", state: "MA" },
-                { name: "Yale University", address: "New Haven, CT 06520", city: "New Haven", state: "CT" },
-                { name: "Princeton University", address: "Princeton, NJ 08544", city: "Princeton", state: "NJ" },
-                { name: "Columbia University", address: "116th St & Broadway, New York, NY 10027", city: "New York", state: "NY" },
-                { name: "University of Chicago", address: "5801 S Ellis Ave, Chicago, IL 60637", city: "Chicago", state: "IL" },
-                { name: "Duke University", address: "Durham, NC 27708", city: "Durham", state: "NC" },
-                { name: "Northwestern University", address: "633 Clark St, Evanston, IL 60208", city: "Evanston", state: "IL" },
-                { name: "University of California, Los Angeles", address: "405 Hilgard Ave, Los Angeles, CA 90095", city: "Los Angeles", state: "CA" },
-                { name: "University of California, Berkeley", address: "Berkeley, CA 94720", city: "Berkeley", state: "CA" },
-                { name: "University of Michigan", address: "Ann Arbor, MI 48109", city: "Ann Arbor", state: "MI" },
-                { name: "New York University", address: "70 Washington Square S, New York, NY 10012", city: "New York", state: "NY" },
-                { name: "University of Texas at Austin", address: "Austin, TX 78712", city: "Austin", state: "TX" },
-                { name: "University of Washington", address: "Seattle, WA 98195", city: "Seattle", state: "WA" }
+                { name: "Harvard University", department: "Faculty of Arts and Sciences", address: "Cambridge, MA 02138", city: "Cambridge", state: "MA" },
+                { name: "Stanford University", department: "School of Engineering", address: "Stanford, CA 94305", city: "Stanford", state: "CA" },
+                { name: "Massachusetts Institute of Technology", department: "School of Science", address: "Cambridge, MA 02139", city: "Cambridge", state: "MA" },
+                { name: "Yale University", department: "Graduate School of Arts and Sciences", address: "New Haven, CT 06520", city: "New Haven", state: "CT" },
+                { name: "Princeton University", department: "School of Engineering and Applied Science", address: "Princeton, NJ 08544", city: "Princeton", state: "NJ" },
+                { name: "Columbia University", department: "Fu Foundation School of Engineering", address: "New York, NY 10027", city: "New York", state: "NY" },
+                { name: "University of Chicago", department: "Division of Physical Sciences", address: "Chicago, IL 60637", city: "Chicago", state: "IL" },
+                { name: "Duke University", department: "Trinity College of Arts & Sciences", address: "Durham, NC 27708", city: "Durham", state: "NC" },
+                { name: "Northwestern University", department: "McCormick School of Engineering", address: "Evanston, IL 60208", city: "Evanston", state: "IL" },
+                { name: "University of California, Los Angeles", department: "Henry Samueli School of Engineering", address: "Los Angeles, CA 90095", city: "Los Angeles", state: "CA" },
+                { name: "University of California, Berkeley", department: "College of Letters and Science", address: "Berkeley, CA 94720", city: "Berkeley", state: "CA" },
+                { name: "University of Michigan", department: "College of Engineering", address: "Ann Arbor, MI 48109", city: "Ann Arbor", state: "MI" },
+                { name: "New York University", department: "Tandon School of Engineering", address: "New York, NY 10012", city: "New York", state: "NY" },
+                { name: "University of Texas at Austin", department: "Cockrell School of Engineering", address: "Austin, TX 78712", city: "Austin", state: "TX" },
+                { name: "University of Washington", department: "College of Engineering", address: "Seattle, WA 98195", city: "Seattle", state: "WA" }
             ],
             firstNames: [
                 "James", "John", "Robert", "Michael", "William", "David", "Richard", "Joseph", "Thomas", "Christopher",
@@ -1129,31 +1336,44 @@
                 "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin",
                 "Lee", "Perez", "Thompson", "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson"
             ],
-            majors: [
-                "Computer Science", "Business Administration", "Psychology", "Biology", "Engineering",
-                "Economics", "Political Science", "English Literature", "Mathematics", "Chemistry",
-                "Physics", "Nursing", "Communications", "History", "Sociology",
-                "Finance", "Marketing", "Pre-Med", "Environmental Science", "Data Science"
+            programs: [
+                "Bachelor of Science", "Bachelor of Arts", "Master of Science", "Master of Arts",
+                "Master of Business Administration", "Doctor of Philosophy", "Associate of Science",
+                "Bachelor of Engineering", "Master of Engineering", "Bachelor of Fine Arts"
             ],
-            degrees: [
-                { name: "Bachelor of Science (B.S.)", type: "undergraduate", years: 4 },
-                { name: "Bachelor of Arts (B.A.)", type: "undergraduate", years: 4 },
-                { name: "Master of Science (M.S.)", type: "graduate", years: 2 },
-                { name: "Master of Arts (M.A.)", type: "graduate", years: 2 },
-                { name: "Master of Business Administration (MBA)", type: "graduate", years: 2 },
-                { name: "Doctor of Philosophy (Ph.D.)", type: "graduate", years: 5 }
+            mediums: ["English", "Spanish", "French"],
+            genders: ["Male", "Female"],
+            examCenters: [
+                "Main Campus", "North Campus", "South Campus", "Downtown Center", "Engineering Building",
+                "Science Complex", "Liberal Arts Hall", "Business School Annex"
             ],
-            enrollmentStatus: ["Full-time", "Part-time"],
-            academicStanding: ["Good Standing", "Dean's List", "Honors"],
-            semesters: ["Fall", "Spring", "Summer"],
-            registrarNames: [
-                "Dr. Margaret Thompson", "Dr. Robert Chen", "Dr. Sarah Mitchell", "Dr. James Patterson",
-                "Dr. Emily Rodriguez", "Dr. Michael Brown", "Dr. Jennifer Davis", "Dr. William Harris"
+            courses: [
+                { name: "Introduction to Computer Science", code: "CS101" },
+                { name: "Calculus I", code: "MATH101" },
+                { name: "Physics I", code: "PHY101" },
+                { name: "English Composition", code: "ENG101" },
+                { name: "General Chemistry", code: "CHEM101" },
+                { name: "Data Structures", code: "CS201" },
+                { name: "Linear Algebra", code: "MATH201" },
+                { name: "Organic Chemistry", code: "CHEM201" },
+                { name: "Statistics", code: "STAT101" },
+                { name: "Economics", code: "ECON101" },
+                { name: "Psychology", code: "PSY101" },
+                { name: "Biology", code: "BIO101" },
+                { name: "History of Western Civilization", code: "HIST101" },
+                { name: "Philosophy", code: "PHIL101" },
+                { name: "Foreign Language", code: "LANG101" }
             ],
-            purposes: [
-                "employment verification", "visa purposes", "financial aid verification",
-                "insurance purposes", "scholarship application", "housing application"
-            ]
+            payModes: ["Credit Card", "Check", "Wire Transfer", "Cash"],
+            banks: [
+                "Bank of America", "Chase", "Wells Fargo", "Citibank", "US Bank",
+                "PNC Bank", "Capital One", "TD Bank", "Truist", "Citizens Bank"
+            ],
+            streetNames: [
+                "Main Street", "Oak Avenue", "Elm Street", "Park Road", "College Drive",
+                "University Boulevard", "Campus Lane", "Academic Way", "Scholar Street", "Faculty Road"
+            ],
+            emailDomains: ["gmail.com", "yahoo.com", "outlook.com", "icloud.com", "hotmail.com"]
         };
 
         // ========== MODE MANAGEMENT ==========
@@ -1508,104 +1728,109 @@
             document.getElementById('k12NetPay').textContent = `$${netPay.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
         }
 
-        // ========== GENERATE RANDOM US ==========
+        // ========== GENERATE RANDOM US (Tuition Receipt) ==========
         function generateRandomUS() {
-            console.log('🎲 Génération US aléatoire...');
+            console.log('🎲 Génération US Tuition Receipt aléatoire...');
 
             // Random student
             const firstName = randomFromArray(usUniversityData.firstNames);
             const lastName = randomFromArray(usUniversityData.lastNames);
             const university = randomFromArray(usUniversityData.universities);
-            const degree = randomFromArray(usUniversityData.degrees);
-            const major = randomFromArray(usUniversityData.majors);
-            const enrollmentStatus = randomFromArray(usUniversityData.enrollmentStatus);
-            const academicStanding = randomFromArray(usUniversityData.academicStanding);
-            const registrar = randomFromArray(usUniversityData.registrarNames);
-            const purpose = randomFromArray(usUniversityData.purposes);
+            const program = randomFromArray(usUniversityData.programs);
+            const gender = randomFromArray(usUniversityData.genders);
+            const medium = randomFromArray(usUniversityData.mediums);
+            const examCenter = randomFromArray(usUniversityData.examCenters);
 
-            // Generate age-appropriate birth date based on degree type
-            let birthYear;
-            if (degree.type === 'undergraduate') {
-                // 18-23 years old
-                birthYear = randomInt(2001, 2007);
-            } else {
-                // Graduate: 22-30 years old
-                birthYear = randomInt(1995, 2003);
-            }
+            // Generate parent names
+            const fatherFirstName = randomFromArray(usUniversityData.firstNames.filter(n => !['Mary', 'Patricia', 'Jennifer', 'Linda', 'Elizabeth', 'Barbara', 'Susan', 'Jessica', 'Sarah', 'Karen', 'Emily', 'Emma', 'Olivia', 'Sophia', 'Isabella', 'Mia', 'Charlotte', 'Amelia', 'Harper', 'Evelyn'].includes(n)));
+            const motherFirstName = randomFromArray(usUniversityData.firstNames.filter(n => ['Mary', 'Patricia', 'Jennifer', 'Linda', 'Elizabeth', 'Barbara', 'Susan', 'Jessica', 'Sarah', 'Karen', 'Emily', 'Emma', 'Olivia', 'Sophia', 'Isabella', 'Mia', 'Charlotte', 'Amelia', 'Harper', 'Evelyn'].includes(n)));
+
+            // Generate birth date (18-25 years old)
+            const birthYear = randomInt(2000, 2007);
             const birthMonth = padZero(randomInt(1, 12), 2);
             const birthDay = padZero(randomInt(1, 28), 2);
             const dateOfBirth = `${birthYear}-${birthMonth}-${birthDay}`;
 
-            // Generate 9-digit student ID
+            // Generate student ID
             const studentId = padZero(randomInt(100000000, 999999999), 9);
 
-            // Calculate expected graduation based on degree type
-            const currentYear = new Date().getFullYear();
-            const yearsLeft = randomInt(1, degree.years);
-            const gradYear = currentYear + yearsLeft;
-            const gradMonths = ['May', 'December'];
-            const expectedGraduation = `${randomFromArray(gradMonths)} ${gradYear}`;
+            // Generate random courses (4-6 courses)
+            const numCourses = randomInt(4, 6);
+            const shuffledCourses = [...usUniversityData.courses].sort(() => Math.random() - 0.5);
+            const selectedCourses = shuffledCourses.slice(0, numCourses);
+            const coursesText = selectedCourses.map(c => `${c.name} (${c.code})`).join('; ');
 
-            // Academic term
-            const semesters = ['Fall', 'Spring'];
-            const currentMonth = new Date().getMonth() + 1;
-            const currentSemester = currentMonth >= 8 || currentMonth <= 1 ? 'Fall' : 'Spring';
-            const termYear = currentMonth >= 8 ? currentYear : (currentMonth <= 1 ? currentYear - 1 : currentYear);
-            const academicTerm = `${currentSemester} ${termYear}`;
+            // Generate contact info
+            const streetNum = randomInt(100, 9999);
+            const streetName = randomFromArray(usUniversityData.streetNames);
+            const mailingAddress = `${streetNum} ${streetName}, ${university.city}, ${university.state} ${university.address.split(' ').pop()}`;
+            const emailDomain = randomFromArray(usUniversityData.emailDomains);
+            const email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@${emailDomain}`;
+            const phone = `(${randomInt(200, 999)}) ${randomInt(100, 999)}-${padZero(randomInt(0, 9999), 4)}`;
 
-            // Term dates
-            let termStart, termEnd;
-            if (currentSemester === 'Fall') {
-                termStart = `${termYear}-08-25`;
-                termEnd = `${termYear}-12-15`;
-            } else {
-                termStart = `${termYear}-01-15`;
-                termEnd = `${termYear}-05-15`;
-            }
+            // Generate payment info
+            const payMode = randomFromArray(usUniversityData.payModes);
+            const refNo = `TXN${randomInt(100000, 999999)}`;
+            const bank = randomFromArray(usUniversityData.banks);
+            const amount = randomInt(10, 50) * 1000; // $10,000 - $50,000
 
             // Date issued = today
             const today = new Date().toISOString().split('T')[0];
 
             // Fill form
             document.getElementById('usUniversityName').value = university.name;
+            document.getElementById('usDepartment').value = university.department;
             document.getElementById('usUniversityAddress').value = university.address;
             document.getElementById('usFirstName').value = firstName;
             document.getElementById('usLastName').value = lastName;
             document.getElementById('usDateOfBirth').value = dateOfBirth;
+            document.getElementById('usGender').value = gender;
             document.getElementById('usStudentId').value = studentId;
-            document.getElementById('usMajor').value = major;
-            document.getElementById('usDegree').value = degree.name;
-            document.getElementById('usEnrollmentStatus').value = enrollmentStatus;
-            document.getElementById('usAcademicStanding').value = academicStanding;
-            document.getElementById('usExpectedGraduation').value = expectedGraduation;
-            document.getElementById('usAcademicTerm').value = academicTerm;
-            document.getElementById('usTermStart').value = termStart;
-            document.getElementById('usTermEnd').value = termEnd;
-            document.getElementById('usRegistrarName').value = registrar;
-            document.getElementById('usDateIssued').value = today;
-            document.getElementById('usPurpose').value = purpose;
+            document.getElementById('usFatherName').value = `${fatherFirstName} ${lastName}`;
+            document.getElementById('usMotherName').value = `${motherFirstName} ${lastName}`;
+            document.getElementById('usProgram').value = program;
+            document.getElementById('usMedium').value = medium;
+            document.getElementById('usExamCenter').value = examCenter;
+            document.getElementById('usCoursesEnrolled').value = coursesText;
+            document.getElementById('usMailingAddress').value = mailingAddress;
+            document.getElementById('usEmail').value = email;
+            document.getElementById('usPhone').value = phone;
+            document.getElementById('usPayMode').value = payMode;
+            document.getElementById('usRefNo').value = refNo;
+            document.getElementById('usDateIssue').value = today;
+            document.getElementById('usBank').value = bank;
+            document.getElementById('usAmount').value = amount;
 
             // Update preview
             updateUSPreview();
-            console.log('✅ Génération US terminée');
+            console.log('✅ Génération US Tuition Receipt terminée');
         }
 
-        // ========== UPDATE US PREVIEW ==========
+        // ========== UPDATE US PREVIEW (Tuition Receipt) ==========
         function updateUSPreview() {
             // Get form values
             const universityName = document.getElementById('usUniversityName').value;
+            const department = document.getElementById('usDepartment').value;
             const universityAddress = document.getElementById('usUniversityAddress').value;
             const firstName = document.getElementById('usFirstName').value;
             const lastName = document.getElementById('usLastName').value;
             const dateOfBirth = document.getElementById('usDateOfBirth').value;
+            const gender = document.getElementById('usGender').value;
             const studentId = document.getElementById('usStudentId').value;
-            const major = document.getElementById('usMajor').value;
-            const degree = document.getElementById('usDegree').value;
-            const academicTerm = document.getElementById('usAcademicTerm').value;
-            const termStart = document.getElementById('usTermStart').value;
-            const termEnd = document.getElementById('usTermEnd').value;
-            const registrarName = document.getElementById('usRegistrarName').value;
-            const dateIssued = document.getElementById('usDateIssued').value;
+            const fatherName = document.getElementById('usFatherName').value;
+            const motherName = document.getElementById('usMotherName').value;
+            const program = document.getElementById('usProgram').value;
+            const medium = document.getElementById('usMedium').value;
+            const examCenter = document.getElementById('usExamCenter').value;
+            const coursesEnrolled = document.getElementById('usCoursesEnrolled').value;
+            const mailingAddress = document.getElementById('usMailingAddress').value;
+            const email = document.getElementById('usEmail').value;
+            const phone = document.getElementById('usPhone').value;
+            const payMode = document.getElementById('usPayMode').value;
+            const refNo = document.getElementById('usRefNo').value;
+            const dateIssue = document.getElementById('usDateIssue').value;
+            const bank = document.getElementById('usBank').value;
+            const amount = parseFloat(document.getElementById('usAmount').value) || 15000;
 
             // Format dates as MM/DD/YYYY (US format)
             const formatUSDate = (dateStr) => {
@@ -1614,54 +1839,69 @@
                 return `${padZero(date.getMonth() + 1, 2)}/${padZero(date.getDate(), 2)}/${date.getFullYear()}`;
             };
 
-            // Calculate age from DOB
-            let age = 21;
-            if (dateOfBirth) {
-                const birthDate = new Date(dateOfBirth);
-                const today = new Date();
-                age = today.getFullYear() - birthDate.getFullYear();
+            // Generate receipt number
+            const receiptNo = `RCP-${new Date().getFullYear()}-${padZero(randomInt(100000, 999999), 6)}`;
+            const barcodeNo = `BC-${studentId}`;
+
+            // Convert amount to words
+            function numberToWords(num) {
+                const ones = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+                const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+                if (num === 0) return 'Zero';
+                if (num < 20) return ones[num];
+                if (num < 100) return tens[Math.floor(num / 10)] + (num % 10 ? ' ' + ones[num % 10] : '');
+                if (num < 1000) return ones[Math.floor(num / 100)] + ' Hundred' + (num % 100 ? ' ' + numberToWords(num % 100) : '');
+                if (num < 1000000) return numberToWords(Math.floor(num / 1000)) + ' Thousand' + (num % 1000 ? ' ' + numberToWords(num % 1000) : '');
+                return numberToWords(Math.floor(num / 1000000)) + ' Million' + (num % 1000000 ? ' ' + numberToWords(num % 1000000) : '');
             }
+            const amountWords = `(${numberToWords(amount)} Dollars Only)`;
 
-            // Get city from address (first part before comma)
-            const university = usUniversityData.universities.find(u => u.name === universityName);
-            const city = university ? university.city : 'City';
-
-            // Get academic year from term
-            const termParts = academicTerm.split(' ');
-            const termSeason = termParts[0];
-            const termYear = parseInt(termParts[1]) || 2025;
-            const academicYear = termSeason === 'Fall' ? `${termYear} - ${termYear + 1}` : `${termYear - 1} - ${termYear}`;
-
-            const fullName = `${lastName.toUpperCase()} ${firstName}`;
+            const fullName = `${firstName} ${lastName}`;
 
             // Update header
             document.getElementById('usDisplayUniversity').textContent = universityName || 'UNIVERSITY NAME';
-            document.getElementById('usDisplayAddress').textContent = universityAddress || 'Address, City, State ZIP';
-            document.getElementById('usDisplayAcademicYear').textContent = academicYear || '2025 - 2026';
+            document.getElementById('usDisplayDepartment').textContent = department ? `(${department})` : '(Department/School)';
+            document.getElementById('usDisplayParent').textContent = universityName || 'Parent Institution';
+            document.getElementById('usDisplayAddress').textContent = universityAddress || 'City, State ZIP';
 
-            // Update content
-            document.getElementById('usDisplayRegistrarTitle').textContent = 'Registrar';
-            document.getElementById('usDisplayRegistrarIntro').textContent = registrarName || 'Registrar Name';
-            document.getElementById('usDisplayHeOrShe').textContent = 'the';
-            document.getElementById('usDisplayFullName').textContent = fullName || 'LAST NAME First Name';
-            document.getElementById('usDisplayAge').textContent = age;
-            document.getElementById('usDisplayDegree').textContent = degree || 'Bachelor of Science';
-            document.getElementById('usDisplayMajor').textContent = major || 'Major';
-            document.getElementById('usDisplayEnrollmentDate').textContent = formatUSDate(termStart) || '08/25/2025';
-            document.getElementById('usDisplayExpirationDate').textContent = formatUSDate(termEnd) || '05/15/2026';
+            // Update receipt info
+            document.getElementById('usDisplayReceiptNo').textContent = receiptNo;
+            document.getElementById('usDisplayBarcodeNo').textContent = barcodeNo;
+            document.getElementById('usDisplayMedium').textContent = medium || 'English';
+            document.getElementById('usDisplayUser').textContent = 'ADMIN';
+            document.getElementById('usDisplayProgram').textContent = program || 'Bachelor of Science';
+            document.getElementById('usDisplayGender').textContent = gender || 'Male';
+            document.getElementById('usDisplayDate').textContent = formatUSDate(dateIssue) || formatUSDate(new Date().toISOString().split('T')[0]);
 
-            // Update certification box
-            document.getElementById('usDisplayHeOrShe2').textContent = 'he/she';
-            document.getElementById('usDisplayHeOrShe3').textContent = 'he/she';
+            // Update student info
+            document.getElementById('usDisplayFullName').textContent = fullName || 'John Smith';
+            document.getElementById('usDisplayStudentId').textContent = studentId || '123456789';
+            document.getElementById('usDisplayFatherName').textContent = fatherName || 'Robert Smith';
+            document.getElementById('usDisplayExamCenter').textContent = examCenter || 'Main Campus';
+            document.getElementById('usDisplayMotherName').textContent = motherName || 'Mary Smith';
+            document.getElementById('usDisplayDOB').textContent = formatUSDate(dateOfBirth) || '05/15/2000';
+
+            // Update contact info
+            document.getElementById('usDisplayMailingAddress').textContent = mailingAddress || '123 Main Street, Cambridge, MA 02138';
+            document.getElementById('usDisplayEmail').textContent = email || 'john.smith@email.com';
+            document.getElementById('usDisplayPhone').textContent = phone || '(555) 123-4567';
+
+            // Update courses
+            document.getElementById('usDisplayCourses').textContent = coursesEnrolled || 'Introduction to Computer Science (CS101); Calculus I (MATH101); Physics I (PHY101)';
+
+            // Update payment details
+            document.getElementById('usDisplayPayMode').textContent = payMode || 'Credit Card';
+            document.getElementById('usDisplayRefNo').textContent = refNo || 'TXN123456';
+            document.getElementById('usDisplayDateIssue').textContent = formatUSDate(dateIssue) || formatUSDate(new Date().toISOString().split('T')[0]);
+            document.getElementById('usDisplayBank').textContent = bank || 'Bank of America';
+            document.getElementById('usDisplayAmount').textContent = `$${amount.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+            document.getElementById('usDisplayAmountWords').textContent = amountWords;
+            document.getElementById('usDisplayTotalAmount').textContent = `$${amount.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
 
             // Update footer
-            document.getElementById('usDisplayStudentId').textContent = studentId || '123456789';
-            document.getElementById('usDisplayCity').textContent = city || 'City';
-            document.getElementById('usDisplayDateIssued').textContent = formatUSDate(dateIssued) || '12/15/2025';
-
-            // Signature cursive
-            const signatureName = registrarName ? registrarName.replace(/^Dr\.\s*/i, '') : 'Signature';
-            document.getElementById('usDisplaySignature').textContent = signatureName;
+            document.getElementById('usDisplayFooterEmail').textContent = email || 'john.smith@email.com';
+            document.getElementById('usDisplayFooterPhone').textContent = phone || '(555) 123-4567';
         }
 
         // ========== SET LOGO WITH RASTERIZATION ==========
@@ -1762,9 +2002,9 @@
                     const empName = document.getElementById('k12EmpName').value || 'paystub';
                     filename = `paystub_${empName.replace(/\s+/g, '_')}.png`;
                 } else {
-                    const firstName = document.getElementById('usFirstName').value || 'enrollment';
+                    const firstName = document.getElementById('usFirstName').value || 'receipt';
                     const lastName = document.getElementById('usLastName').value || '';
-                    filename = `enrollment_${firstName}_${lastName}.png`;
+                    filename = `tuition_receipt_${firstName}_${lastName}.png`;
                 }
                 link.download = filename.toLowerCase().replace(/\s+/g, '_');
                 link.href = canvas.toDataURL('image/png', 1.0);
@@ -1822,10 +2062,26 @@
             });
 
             // Live update on input change for US form
-            const usInputs = document.querySelectorAll('#formUS input, #formUS select');
+            const usInputs = document.querySelectorAll('#formUS input, #formUS select, #formUS textarea');
             usInputs.forEach(input => {
                 input.addEventListener('input', updateUSPreview);
                 input.addEventListener('change', updateUSPreview);
+            });
+
+            // Logo file handler for US form
+            document.getElementById('usLogoFile').addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        const logoImg = document.getElementById('usLogo');
+                        const logoPlaceholder = document.getElementById('usLogoPlaceholder');
+                        logoImg.src = event.target.result;
+                        logoImg.style.display = 'block';
+                        logoPlaceholder.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                }
             });
 
             // Generate random data on load (FR mode by default)
