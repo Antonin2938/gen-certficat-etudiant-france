@@ -462,9 +462,12 @@
                                     placeholder="Cambridge, MA 02138">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-300 mb-1">Logo (optional)</label>
-                                <input type="file" id="usLogoFile" accept="image/*"
-                                    class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-sm file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:bg-blue-600 file:text-white file:cursor-pointer">
+                                <label class="block text-sm font-medium text-gray-300 mb-1">
+                                    <i class="fas fa-image mr-2 text-yellow-400"></i>Logo
+                                </label>
+                                <input type="text" id="usLogoFilename" readonly
+                                    class="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-sm text-gray-300 cursor-default"
+                                    placeholder="Sélection automatique...">
                             </div>
                         </div>
                     </div>
@@ -1310,21 +1313,15 @@
         // ========== US UNIVERSITY DATA (Tuition Receipt) ==========
         const usUniversityData = {
             universities: [
-                { name: "Harvard University", department: "Faculty of Arts and Sciences", address: "Cambridge, MA 02138", city: "Cambridge", state: "MA" },
-                { name: "Stanford University", department: "School of Engineering", address: "Stanford, CA 94305", city: "Stanford", state: "CA" },
-                { name: "Massachusetts Institute of Technology", department: "School of Science", address: "Cambridge, MA 02139", city: "Cambridge", state: "MA" },
-                { name: "Yale University", department: "Graduate School of Arts and Sciences", address: "New Haven, CT 06520", city: "New Haven", state: "CT" },
-                { name: "Princeton University", department: "School of Engineering and Applied Science", address: "Princeton, NJ 08544", city: "Princeton", state: "NJ" },
-                { name: "Columbia University", department: "Fu Foundation School of Engineering", address: "New York, NY 10027", city: "New York", state: "NY" },
-                { name: "University of Chicago", department: "Division of Physical Sciences", address: "Chicago, IL 60637", city: "Chicago", state: "IL" },
-                { name: "Duke University", department: "Trinity College of Arts & Sciences", address: "Durham, NC 27708", city: "Durham", state: "NC" },
-                { name: "Northwestern University", department: "McCormick School of Engineering", address: "Evanston, IL 60208", city: "Evanston", state: "IL" },
-                { name: "University of California, Los Angeles", department: "Henry Samueli School of Engineering", address: "Los Angeles, CA 90095", city: "Los Angeles", state: "CA" },
-                { name: "University of California, Berkeley", department: "College of Letters and Science", address: "Berkeley, CA 94720", city: "Berkeley", state: "CA" },
-                { name: "University of Michigan", department: "College of Engineering", address: "Ann Arbor, MI 48109", city: "Ann Arbor", state: "MI" },
-                { name: "New York University", department: "Tandon School of Engineering", address: "New York, NY 10012", city: "New York", state: "NY" },
-                { name: "University of Texas at Austin", department: "Cockrell School of Engineering", address: "Austin, TX 78712", city: "Austin", state: "TX" },
-                { name: "University of Washington", department: "College of Engineering", address: "Seattle, WA 98195", city: "Seattle", state: "WA" }
+                { name: "Harvard University", department: "Faculty of Arts and Sciences", address: "Cambridge, MA 02138", city: "Cambridge", state: "MA", logo: "harvard.svg" },
+                { name: "Stanford University", department: "School of Engineering", address: "Stanford, CA 94305", city: "Stanford", state: "CA", logo: "stanford.svg" },
+                { name: "Northwestern University", department: "McCormick School of Engineering", address: "Evanston, IL 60208", city: "Evanston", state: "IL", logo: "northwestern.svg" },
+                { name: "University of Chicago", department: "Division of Physical Sciences", address: "Chicago, IL 60637", city: "Chicago", state: "IL", logo: "chicago.svg" },
+                { name: "University of Michigan", department: "College of Engineering", address: "Ann Arbor, MI 48109", city: "Ann Arbor", state: "MI", logo: "michigan.svg" },
+                { name: "University of Minnesota", department: "College of Science and Engineering", address: "Minneapolis, MN 55455", city: "Minneapolis", state: "MN", logo: "minnesota.svg" },
+                { name: "Miami University", department: "College of Arts and Science", address: "Oxford, OH 45056", city: "Oxford", state: "OH", logo: "miami.svg" },
+                { name: "Barry University", department: "College of Arts and Sciences", address: "Miami Shores, FL 33161", city: "Miami Shores", state: "FL", logo: "barry.svg" },
+                { name: "University of Rochester", department: "Hajim School of Engineering", address: "Rochester, NY 14627", city: "Rochester", state: "NY", logo: "rochester.svg" }
             ],
             firstNames: [
                 "James", "John", "Robert", "Michael", "William", "David", "Richard", "Joseph", "Thomas", "Christopher",
@@ -1800,6 +1797,11 @@
             document.getElementById('usDateIssue').value = today;
             document.getElementById('usBank').value = bank;
             document.getElementById('usAmount').value = amount;
+            document.getElementById('usLogoFilename').value = university.logo;
+
+            // Display logo
+            const logoPath = `assets/logos/${university.logo}`;
+            setUSLogo(logoPath);
 
             // Update preview
             updateUSPreview();
@@ -1947,6 +1949,52 @@
             img.src = source;
         }
 
+        // ========== SET US LOGO WITH RASTERIZATION ==========
+        function setUSLogo(logoPath) {
+            const logoImg = document.getElementById('usLogo');
+            const logoPlaceholder = document.getElementById('usLogoPlaceholder');
+
+            // 1. Récupérer la version Base64 depuis window.CERT_LOGOS
+            let source = logoPath;
+            if (window.CERT_LOGOS && window.CERT_LOGOS[logoPath]) {
+                source = window.CERT_LOGOS[logoPath];
+                console.log('🖼️ US Logo trouvé en Base64:', logoPath);
+            } else {
+                console.warn('⚠️ US Logo non trouvé en Base64, utilisation chemin direct');
+            }
+
+            // 2. Créer une image temporaire
+            const img = new Image();
+
+            img.onload = function () {
+                // 3. Canvas pour rasteriser
+                const canvas = document.createElement('canvas');
+                canvas.width = 70;
+                canvas.height = 70;
+                const ctx = canvas.getContext('2d');
+
+                // 4. Dessiner (rasterization SVG → pixels)
+                ctx.drawImage(img, 0, 0, 70, 70);
+
+                // 5. Extraire en PNG data URL
+                const pngDataUrl = canvas.toDataURL('image/png');
+
+                // 6. Afficher le PNG rasterisé
+                logoImg.src = pngDataUrl;
+                logoImg.style.display = 'block';
+                logoPlaceholder.style.display = 'none';
+                console.log('✅ US Logo rasterisé');
+            };
+
+            img.onerror = function () {
+                console.warn('⚠️ Erreur chargement US logo');
+                logoImg.style.display = 'none';
+                logoPlaceholder.style.display = 'flex';
+            };
+
+            img.src = source;
+        }
+
         // ========== DOWNLOAD AS IMAGE ==========
         async function downloadCertificate() {
             // Select the correct element based on current mode
@@ -2066,22 +2114,6 @@
             usInputs.forEach(input => {
                 input.addEventListener('input', updateUSPreview);
                 input.addEventListener('change', updateUSPreview);
-            });
-
-            // Logo file handler for US form
-            document.getElementById('usLogoFile').addEventListener('change', function (e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (event) {
-                        const logoImg = document.getElementById('usLogo');
-                        const logoPlaceholder = document.getElementById('usLogoPlaceholder');
-                        logoImg.src = event.target.result;
-                        logoImg.style.display = 'block';
-                        logoPlaceholder.style.display = 'none';
-                    };
-                    reader.readAsDataURL(file);
-                }
             });
 
             // Generate random data on load (FR mode by default)

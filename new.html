@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Receipt - School of Open Learning</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            background: #e0e0e0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: white;
+            padding: 12mm 18mm;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                padding: 10mm 15mm;
+            }
+        }
+
+        /* Watermark - Real DU logo */
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            opacity: 0.08;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .watermark img {
+            width: 100%;
+            display: block;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header with real logo */
+        .header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            margin-right: 20px;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .header-text {
+            text-align: center;
+            flex: 1;
+        }
+
+        .header-text h1 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .header-text p {
+            font-size: 12px;
+            margin-bottom: 1px;
+        }
+
+        .header-text .sub {
+            font-size: 11px;
+        }
+
+        /* Fee Receipt Title - Purple like original */
+        .receipt-title {
+            text-align: center;
+            margin: 12px 0 18px 0;
+        }
+
+        .receipt-title h2 {
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: underline;
+            color: #800080;
+        }
+
+        /* Barcode section */
+        .barcode-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 15px;
+            height: 40px;
+        }
+
+        .barcode svg {
+            height: 40px;
+        }
+
+        .receipt-no {
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .receipt-no span {
+            font-weight: normal;
+        }
+
+        /* Grid layout for info - Modern CSS Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 120px 8px 1.3fr 60px 8px 0.7fr 100px 8px 1fr;
+            gap: 6px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .colon {
+            text-align: center;
+        }
+
+        /* Full width rows */
+        .full-row {
+            display: grid;
+            grid-template-columns: 120px 8px 1fr;
+            gap: 6px 10px;
+            margin-bottom: 6px;
+        }
+
+        .email-phone-row {
+            display: grid;
+            grid-template-columns: 120px 8px 1fr 80px 8px 1fr;
+            gap: 6px 10px;
+            margin-bottom: 6px;
+        }
+
+        /* Subject section */
+        .subject-row {
+            display: grid;
+            grid-template-columns: 120px 8px 1fr;
+            gap: 6px 10px;
+            margin-bottom: 18px;
+            font-size: 10px;
+        }
+
+        /* Payment Details */
+        .payment-header {
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 12px;
+            margin-top: 8px;
+        }
+
+        .payment-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        .payment-table th {
+            text-align: left;
+            font-weight: bold;
+            padding: 6px 0;
+        }
+
+        .payment-table td {
+            text-align: left;
+            padding: 6px 0;
+        }
+
+        .payment-table .amount {
+            text-align: right;
+        }
+
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            font-size: 11px;
+        }
+
+        .total-words {
+            text-align: center;
+            flex: 1;
+        }
+
+        .total-amount {
+            font-weight: bold;
+            text-align: right;
+            min-width: 60px;
+        }
+
+        /* Notes - Red labels like original */
+        .notes {
+            margin-top: 25px;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        .note-item {
+            margin-bottom: 10px;
+            display: flex;
+        }
+
+        .note-label {
+            font-weight: bold;
+            color: #cc0000;
+            min-width: 45px;
+        }
+
+        .note-text {
+            flex: 1;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #cc0000;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 11px;
+        }
+
+        .footer .email-highlight {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <!-- Watermark - Real University of Delhi logo -->
+        <div class="watermark">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/University_of_Delhi_logo.png" alt="Watermark">
+        </div>
+
+        <div class="content">
+            <!-- Header with real logo -->
+            <div class="header">
+                <div class="logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/University_of_Delhi_logo.png"
+                        alt="University Logo">
+                </div>
+                <div class="header-text">
+                    <h1>School of Open Learning</h1>
+                    <p>(Campus of Open Learning)</p>
+                    <p>University of Delhi</p>
+                    <p class="sub">Delhi-110007</p>
+                </div>
+            </div>
+
+            <!-- Fee Receipt Title - Purple -->
+            <div class="receipt-title">
+                <h2>Fee Receipt</h2>
+            </div>
+
+            <!-- Barcode and Receipt No -->
+            <div class="barcode-section">
+                <div class="barcode">
+                    <svg width="220" height="40">
+                        <rect x="0" y="0" width="3" height="40" fill="black" />
+                        <rect x="5" y="0" width="1" height="40" fill="black" />
+                        <rect x="8" y="0" width="4" height="40" fill="black" />
+                        <rect x="14" y="0" width="1" height="40" fill="black" />
+                        <rect x="17" y="0" width="2" height="40" fill="black" />
+                        <rect x="21" y="0" width="1" height="40" fill="black" />
+                        <rect x="24" y="0" width="3" height="40" fill="black" />
+                        <rect x="29" y="0" width="1" height="40" fill="black" />
+                        <rect x="32" y="0" width="2" height="40" fill="black" />
+                        <rect x="36" y="0" width="1" height="40" fill="black" />
+                        <rect x="39" y="0" width="4" height="40" fill="black" />
+                        <rect x="45" y="0" width="2" height="40" fill="black" />
+                        <rect x="49" y="0" width="1" height="40" fill="black" />
+                        <rect x="52" y="0" width="3" height="40" fill="black" />
+                        <rect x="57" y="0" width="4" height="40" fill="black" />
+                        <rect x="63" y="0" width="1" height="40" fill="black" />
+                        <rect x="66" y="0" width="2" height="40" fill="black" />
+                        <rect x="70" y="0" width="1" height="40" fill="black" />
+                        <rect x="73" y="0" width="3" height="40" fill="black" />
+                        <rect x="78" y="0" width="1" height="40" fill="black" />
+                        <rect x="81" y="0" width="2" height="40" fill="black" />
+                        <rect x="85" y="0" width="1" height="40" fill="black" />
+                        <rect x="88" y="0" width="4" height="40" fill="black" />
+                        <rect x="94" y="0" width="2" height="40" fill="black" />
+                        <rect x="98" y="0" width="1" height="40" fill="black" />
+                        <rect x="101" y="0" width="3" height="40" fill="black" />
+                        <rect x="106" y="0" width="1" height="40" fill="black" />
+                        <rect x="109" y="0" width="4" height="40" fill="black" />
+                        <rect x="115" y="0" width="1" height="40" fill="black" />
+                        <rect x="118" y="0" width="2" height="40" fill="black" />
+                        <rect x="122" y="0" width="1" height="40" fill="black" />
+                        <rect x="125" y="0" width="3" height="40" fill="black" />
+                        <rect x="130" y="0" width="2" height="40" fill="black" />
+                        <rect x="134" y="0" width="1" height="40" fill="black" />
+                        <rect x="137" y="0" width="4" height="40" fill="black" />
+                        <rect x="143" y="0" width="1" height="40" fill="black" />
+                        <rect x="146" y="0" width="2" height="40" fill="black" />
+                        <rect x="150" y="0" width="1" height="40" fill="black" />
+                        <rect x="153" y="0" width="3" height="40" fill="black" />
+                        <rect x="158" y="0" width="1" height="40" fill="black" />
+                        <rect x="161" y="0" width="2" height="40" fill="black" />
+                    </svg>
+                </div>
+                <div class="receipt-no">Receipt No : <span>25-06-876823</span></div>
+            </div>
+
+            <!-- Main Info Grid -->
+            <div class="info-grid">
+                <!-- Row 1: Barcode No, Medium, User -->
+                <div class="label">Barcode No</div>
+                <div class="colon">:</div>
+                <div>565823</div>
+
+                <div class="label">Medium</div>
+                <div class="colon">:</div>
+                <div>English</div>
+
+                <div class="label">User</div>
+                <div class="colon">:</div>
+                <div>200982</div>
+
+                <!-- Row 2: Course, Sex, Date -->
+                <div class="label">Course</div>
+                <div class="colon">:</div>
+                <div>B.Com. - I</div>
+
+                <div class="label">Sex</div>
+                <div class="colon">:</div>
+                <div>Male</div>
+
+                <div class="label">Date</div>
+                <div class="colon">:</div>
+                <div>25/06/2025</div>
+
+                <!-- Row 3: Name, SOL Roll No -->
+                <div class="label">Name</div>
+                <div class="colon">:</div>
+                <div>FIRSTNAME LASTNAME</div>
+
+                <div></div>
+                <div></div>
+                <div></div>
+
+                <div class="label">SOL Roll No.</div>
+                <div class="colon">:</div>
+                <div>25-6-02-048878</div>
+
+                <!-- Row 4: Father's Name, Exam Centre -->
+                <div class="label">Father's Name</div>
+                <div class="colon">:</div>
+                <div>FIRSTNAME LASTNAME</div>
+
+                <div></div>
+                <div></div>
+                <div></div>
+
+                <div class="label">Exam Centre</div>
+                <div class="colon">:</div>
+                <div>DELHI (WEST Zone)</div>
+
+                <!-- Row 5: Mother's Name, Date of Birth -->
+                <div class="label">Mother's Name</div>
+                <div class="colon">:</div>
+                <div>FIRSTNAME LASTNAME</div>
+
+                <div></div>
+                <div></div>
+                <div></div>
+
+                <div class="label">Date of Birth</div>
+                <div class="colon">:</div>
+                <div>01-Jan-2004</div>
+            </div>
+
+            <!-- Mailing Address (full width) -->
+            <div class="full-row">
+                <div class="label">Mailing Address</div>
+                <div class="colon">:</div>
+                <div>A 25, RANDOM DELHI ADDRESS, DELHI - 110027</div>
+            </div>
+
+            <!-- Email + Phone -->
+            <div class="email-phone-row">
+                <div class="label">Email Id</div>
+                <div class="colon">:</div>
+                <div>firstname25-6-02-048878@sol.du.ac.in</div>
+
+                <div class="label">Phone No</div>
+                <div class="colon">:</div>
+                <div>9878287675</div>
+            </div>
+
+            <!-- Subject Offered -->
+            <div class="subject-row">
+                <div class="label">Subject Offered</div>
+                <div class="colon">:</div>
+                <div>Part I : BUSINESS ORGANISATION AND MANAGEMENT (A101);FINANCIAL ACCOUNTING (A102);BUSINESS AND
+                    INDUSTRIAL LAWS (A103);ECONOMICS PAPER1 PRINCIPLE OF ECONOMICS (A104);HINDI-B (A108)</div>
+            </div>
+
+            <!-- Payment Details -->
+            <div class="payment-header">Payment Details</div>
+
+            <table class="payment-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Pay Mode</th>
+                        <th style="width: 20%;">Refe.No.</th>
+                        <th style="width: 20%;">Date of Issue</th>
+                        <th style="width: 25%;">Bank</th>
+                        <th class="amount" style="width: 20%;">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DD</td>
+                        <td>345266734</td>
+                        <td>24/06/2025</td>
+                        <td>SBI-DD-DU</td>
+                        <td class="amount">3465</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="total-section">
+                <div class="total-words">(Rupees Three Thousand Four Hundred Sixty-Five And Zero Paise Only)</div>
+                <div class="total-amount">3465</div>
+            </div>
+
+            <!-- Notes - Red labels -->
+            <div class="notes">
+                <div class="note-item">
+                    <span class="note-label">Note1:</span>
+                    <div class="note-text">Admission is provisional subject to the verification of original documents
+                        by the office .Since this is computer generated receipt, no seal/signature are required. It is
+                        advised to check the details on the receipt. In case of any discrepancy, please Contact SOL
+                        Office.</div>
+                </div>
+                <div class="note-item">
+                    <span class="note-label">Note2:</span>
+                    <div class="note-text">Students opting for North Campus can collect study material from <span
+                            class="highlight">SOL-North</span> and those opting for South can collect it only from
+                        <span class="highlight">SOL-South Moti bagh</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                Please note that in future you will get all information through Mail
+                <span class="email-highlight">firstname25-6-02-048878@sol.du.ac.in</span> and Phone No
+                <span class="email-highlight">9878287675</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

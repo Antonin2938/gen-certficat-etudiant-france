@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuition Receipt - University Name</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            background: white;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: white;
+            padding: 12mm 18mm;
+            position: relative;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                padding: 10mm 15mm;
+            }
+        }
+
+        /* Watermark - University Logo */
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            font-weight: bold;
+            color: #000;
+            opacity: 0.06;
+            z-index: 0;
+            pointer-events: none;
+            white-space: nowrap;
+            letter-spacing: 5px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header with logo */
+        .header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed #999;
+            font-size: 9px;
+            text-align: center;
+            color: #666;
+        }
+
+        .header-text {
+            text-align: center;
+            flex: 1;
+            padding-right: 90px;
+            /* Compense le logo pour centrer */
+        }
+
+        .header-text h1 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .header-text p {
+            font-size: 12px;
+            margin-bottom: 1px;
+        }
+
+        .header-text .sub {
+            font-size: 11px;
+        }
+
+        /* Tuition Receipt Title - Blue */
+        .receipt-title {
+            text-align: center;
+            margin: 12px 0 18px 0;
+        }
+
+        .receipt-title h2 {
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: underline;
+            color: #003366;
+        }
+
+        /* Barcode section */
+        .barcode-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 15px;
+            height: 40px;
+        }
+
+        .barcode svg {
+            height: 40px;
+        }
+
+        .receipt-no {
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .receipt-no span {
+            font-weight: normal;
+        }
+
+        /* Grid layout for info - Modern CSS Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 120px 8px 1.3fr 60px 8px 0.7fr 100px 8px 1fr;
+            gap: 12px 10px;
+            font-size: 11px;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .colon {
+            text-align: center;
+        }
+
+        /* Full width rows */
+        .full-row {
+            display: grid;
+            grid-template-columns: 120px 8px 1fr;
+            gap: 6px 10px;
+            margin-bottom: 22px;
+        }
+
+        .email-phone-row {
+            display: grid;
+            grid-template-columns: 120px 8px 1fr 80px 8px 1fr;
+            gap: 6px 10px;
+            margin-bottom: 22px;
+        }
+
+        /* Subject section */
+        .subject-row {
+            display: grid;
+            grid-template-columns: 120px 8px 1fr;
+            gap: 6px 10px;
+            margin-bottom: 26px;
+            font-size: 10px;
+        }
+
+        /* Payment Details */
+        .payment-header {
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 12px;
+            margin-top: 8px;
+        }
+
+        .payment-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        .payment-table th {
+            text-align: left;
+            font-weight: bold;
+            padding: 6px 0;
+        }
+
+        .payment-table td {
+            text-align: left;
+            padding: 6px 0;
+        }
+
+        .payment-table .amount {
+            text-align: right;
+        }
+
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            font-size: 11px;
+        }
+
+        .total-words {
+            text-align: center;
+            flex: 1;
+        }
+
+        .total-amount {
+            font-weight: bold;
+            text-align: right;
+            min-width: 60px;
+        }
+
+        /* Notes - Red labels */
+        .notes {
+            margin-top: 25px;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        .note-item {
+            margin-bottom: 10px;
+            display: flex;
+        }
+
+        .note-label {
+            font-weight: bold;
+            color: #cc0000;
+            min-width: 45px;
+        }
+
+        .note-text {
+            flex: 1;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #cc0000;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 11px;
+        }
+
+        .footer .email-highlight {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="content">
+            <!-- Header with logo -->
+            <div class="header">
+                <div class="logo">
+                    Logo<br>Université
+                </div>
+                <div class="header-text">
+                    <h1>[NOM UNIVERSITÉ]</h1>
+                    <p>([NOM DÉPARTEMENT/ÉCOLE])</p>
+                    <p>[NOM INSTITUTION PARENT]</p>
+                    <p class="sub">[VILLE], [ÉTAT] [CODE POSTAL]</p>
+                </div>
+            </div>
+
+            <!-- Tuition Receipt Title - Blue -->
+            <div class="receipt-title">
+                <h2>Tuition Receipt</h2>
+            </div>
+
+            <!-- Barcode and Receipt No -->
+            <div class="barcode-section">
+                <div class="barcode">
+                    <svg width="220" height="40">
+                        <rect x="0" y="0" width="3" height="40" fill="black" />
+                        <rect x="5" y="0" width="1" height="40" fill="black" />
+                        <rect x="8" y="0" width="4" height="40" fill="black" />
+                        <rect x="14" y="0" width="1" height="40" fill="black" />
+                        <rect x="17" y="0" width="2" height="40" fill="black" />
+                        <rect x="21" y="0" width="1" height="40" fill="black" />
+                        <rect x="24" y="0" width="3" height="40" fill="black" />
+                        <rect x="29" y="0" width="1" height="40" fill="black" />
+                        <rect x="32" y="0" width="2" height="40" fill="black" />
+                        <rect x="36" y="0" width="1" height="40" fill="black" />
+                        <rect x="39" y="0" width="4" height="40" fill="black" />
+                        <rect x="45" y="0" width="2" height="40" fill="black" />
+                        <rect x="49" y="0" width="1" height="40" fill="black" />
+                        <rect x="52" y="0" width="3" height="40" fill="black" />
+                        <rect x="57" y="0" width="4" height="40" fill="black" />
+                        <rect x="63" y="0" width="1" height="40" fill="black" />
+                        <rect x="66" y="0" width="2" height="40" fill="black" />
+                        <rect x="70" y="0" width="1" height="40" fill="black" />
+                        <rect x="73" y="0" width="3" height="40" fill="black" />
+                        <rect x="78" y="0" width="1" height="40" fill="black" />
+                        <rect x="81" y="0" width="2" height="40" fill="black" />
+                        <rect x="85" y="0" width="1" height="40" fill="black" />
+                        <rect x="88" y="0" width="4" height="40" fill="black" />
+                        <rect x="94" y="0" width="2" height="40" fill="black" />
+                        <rect x="98" y="0" width="1" height="40" fill="black" />
+                        <rect x="101" y="0" width="3" height="40" fill="black" />
+                        <rect x="106" y="0" width="1" height="40" fill="black" />
+                        <rect x="109" y="0" width="4" height="40" fill="black" />
+                        <rect x="115" y="0" width="1" height="40" fill="black" />
+                        <rect x="118" y="0" width="2" height="40" fill="black" />
+                        <rect x="122" y="0" width="1" height="40" fill="black" />
+                        <rect x="125" y="0" width="3" height="40" fill="black" />
+                        <rect x="130" y="0" width="2" height="40" fill="black" />
+                        <rect x="134" y="0" width="1" height="40" fill="black" />
+                        <rect x="137" y="0" width="4" height="40" fill="black" />
+                        <rect x="143" y="0" width="1" height="40" fill="black" />
+                        <rect x="146" y="0" width="2" height="40" fill="black" />
+                        <rect x="150" y="0" width="1" height="40" fill="black" />
+                        <rect x="153" y="0" width="3" height="40" fill="black" />
+                        <rect x="158" y="0" width="1" height="40" fill="black" />
+                        <rect x="161" y="0" width="2" height="40" fill="black" />
+                    </svg>
+                </div>
+                <div class="receipt-no">Receipt No : <span>[NUMÉRO REÇU]</span></div>
+            </div>
+
+            <!-- Main Info Grid -->
+            <div class="info-grid">
+                <!-- Row 1: Barcode No, Medium, User -->
+                <div class="label">Barcode No</div>
+                <div class="colon">:</div>
+                <div>[CODE BARRE]</div>
+
+                <div class="label">Medium</div>
+                <div class="colon">:</div>
+                <div>[LANGUE]</div>
+
+                <div class="label">User</div>
+                <div class="colon">:</div>
+                <div>[UTILISATEUR]</div>
+
+                <!-- Row 2: Course, Sex, Date -->
+                <div class="label">Program</div>
+                <div class="colon">:</div>
+                <div>[PROGRAMME]</div>
+
+                <div class="label">Gender</div>
+                <div class="colon">:</div>
+                <div>[GENRE]</div>
+
+                <div class="label">Date</div>
+                <div class="colon">:</div>
+                <div>[DATE]</div>
+
+                <!-- Row 3: Name, Student ID -->
+                <div class="label">Name</div>
+                <div class="colon">:</div>
+                <div>[PRÉNOM NOM]</div>
+
+                <div></div>
+                <div></div>
+                <div></div>
+
+                <div class="label">Student ID</div>
+                <div class="colon">:</div>
+                <div>[NUMÉRO ÉTUDIANT]</div>
+
+                <!-- Row 4: Father's Name, Exam Center -->
+                <div class="label">Father's Name</div>
+                <div class="colon">:</div>
+                <div>[NOM PÈRE]</div>
+
+                <div></div>
+                <div></div>
+                <div></div>
+
+                <div class="label">Exam Center</div>
+                <div class="colon">:</div>
+                <div>[CENTRE EXAMEN]</div>
+
+                <!-- Row 5: Mother's Name, Date of Birth -->
+                <div class="label">Mother's Name</div>
+                <div class="colon">:</div>
+                <div>[NOM MÈRE]</div>
+
+                <div></div>
+                <div></div>
+                <div></div>
+
+                <div class="label">Date of Birth</div>
+                <div class="colon">:</div>
+                <div>[DATE NAISSANCE]</div>
+            </div>
+
+            <!-- Mailing Address (full width) -->
+            <div class="full-row">
+                <div class="label">Mailing Address</div>
+                <div class="colon">:</div>
+                <div>[ADRESSE], [VILLE], [ÉTAT] [CODE POSTAL]</div>
+            </div>
+
+            <!-- Email + Phone -->
+            <div class="email-phone-row">
+                <div class="label">Email</div>
+                <div class="colon">:</div>
+                <div>[EMAIL]</div>
+
+                <div class="label">Phone No</div>
+                <div class="colon">:</div>
+                <div>[TÉLÉPHONE]</div>
+            </div>
+
+            <!-- Subject Offered -->
+            <div class="subject-row">
+                <div class="label">Courses Enrolled</div>
+                <div class="colon">:</div>
+                <div>[LISTE DES COURS]: [COURS 1] ([CODE1]); [COURS 2] ([CODE2]); [COURS 3] ([CODE3]); [COURS 4]
+                    ([CODE4]); [COURS 5] ([CODE5])</div>
+            </div>
+
+            <!-- Payment Details -->
+            <div class="payment-header">Payment Details</div>
+
+            <table class="payment-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Pay Mode</th>
+                        <th style="width: 20%;">Ref. No.</th>
+                        <th style="width: 20%;">Date of Issue</th>
+                        <th style="width: 25%;">Bank</th>
+                        <th class="amount" style="width: 20%;">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>[MODE PAIEMENT]</td>
+                        <td>[NUMÉRO RÉFÉRENCE]</td>
+                        <td>[DATE ÉMISSION]</td>
+                        <td>[NOM BANQUE]</td>
+                        <td class="amount">[MONTANT]</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="total-section">
+                <div class="total-words">([MONTANT EN LETTRES])</div>
+                <div class="total-amount">[MONTANT TOTAL]</div>
+            </div>
+
+            <!-- Notes - Red labels -->
+            <div class="notes">
+                <div class="note-item">
+                    <span class="note-label">Note1:</span>
+                    <div class="note-text">[TEXTE NOTE 1 - Conditions d'admission, vérification des documents,
+                        informations sur le reçu généré par ordinateur, etc.]</div>
+                </div>
+                <div class="note-item">
+                    <span class="note-label">Note2:</span>
+                    <div class="note-text">[TEXTE NOTE 2 - Informations supplémentaires sur la collecte de documents,
+                        campus, etc.] <span class="highlight">[LIEU 1]</span> [TEXTE ADDITIONNEL]
+                        <span class="highlight">[LIEU 2]</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                [TEXTE PIED DE PAGE - Informations de contact futures]
+                <span class="email-highlight">[EMAIL ÉTUDIANT]</span> and Phone No
+                <span class="email-highlight">[TÉLÉPHONE]</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
